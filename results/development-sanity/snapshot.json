@@ -1,0 +1,1973 @@
+{
+  "created_at": "2026-09-19T13:32:05.768090+00:00",
+  "source": "runs/experiment-primary-10usd/development/attempts.jsonl",
+  "snapshot_bytes": 66160775,
+  "snapshot_sha256": "cf6aeb083238b1e8fac361b06b58648a2bfcb783533f9bbce298d2abb9be8871",
+  "scope": "Interim development diagnostics only; not final held-out test results. All common completed cases, including failures; no quality-based selection.",
+  "tasks": {
+    "ragtruth": {
+      "ids": [
+        "rag:11862",
+        "rag:11867",
+        "rag:11869",
+        "rag:11870",
+        "rag:11872",
+        "rag:11873",
+        "rag:11876",
+        "rag:11879",
+        "rag:11881",
+        "rag:11883",
+        "rag:11893",
+        "rag:11894",
+        "rag:11934",
+        "rag:11939",
+        "rag:11946",
+        "rag:11982",
+        "rag:12000",
+        "rag:12028",
+        "rag:12031",
+        "rag:12074",
+        "rag:12077",
+        "rag:12079",
+        "rag:12081",
+        "rag:12111",
+        "rag:12113",
+        "rag:12122",
+        "rag:12148",
+        "rag:12212",
+        "rag:12213",
+        "rag:12255",
+        "rag:12306",
+        "rag:12365",
+        "rag:12371",
+        "rag:12384",
+        "rag:12388",
+        "rag:12409",
+        "rag:12411",
+        "rag:12412",
+        "rag:12413",
+        "rag:12418",
+        "rag:12455",
+        "rag:12465",
+        "rag:12493",
+        "rag:12498",
+        "rag:12500",
+        "rag:12578",
+        "rag:12579",
+        "rag:12580",
+        "rag:12581",
+        "rag:12635",
+        "rag:12637",
+        "rag:12638",
+        "rag:12661",
+        "rag:12662",
+        "rag:12665",
+        "rag:12673",
+        "rag:12679",
+        "rag:12682",
+        "rag:12687",
+        "rag:12689",
+        "rag:12698",
+        "rag:12720",
+        "rag:12732",
+        "rag:12733",
+        "rag:12734",
+        "rag:12749",
+        "rag:12761",
+        "rag:12778",
+        "rag:12779",
+        "rag:12818",
+        "rag:12819",
+        "rag:12820",
+        "rag:12821",
+        "rag:12823",
+        "rag:12834",
+        "rag:12836",
+        "rag:12851",
+        "rag:12857",
+        "rag:12892",
+        "rag:12932",
+        "rag:12955",
+        "rag:12959",
+        "rag:12988",
+        "rag:12991",
+        "rag:12994",
+        "rag:12995",
+        "rag:12999",
+        "rag:13002",
+        "rag:13007",
+        "rag:13016",
+        "rag:13019",
+        "rag:13021",
+        "rag:13030",
+        "rag:13080",
+        "rag:13081",
+        "rag:13085",
+        "rag:13092",
+        "rag:13100",
+        "rag:13102",
+        "rag:13110",
+        "rag:13115",
+        "rag:13117",
+        "rag:13118",
+        "rag:13124",
+        "rag:13177",
+        "rag:13181",
+        "rag:13196",
+        "rag:13197",
+        "rag:13198",
+        "rag:13304",
+        "rag:13305",
+        "rag:13330",
+        "rag:13331",
+        "rag:13332",
+        "rag:13333",
+        "rag:13335",
+        "rag:13357",
+        "rag:13381",
+        "rag:13383",
+        "rag:13384",
+        "rag:13387",
+        "rag:13398",
+        "rag:13399",
+        "rag:13400",
+        "rag:13403",
+        "rag:13410",
+        "rag:13411",
+        "rag:13413",
+        "rag:13416",
+        "rag:13418",
+        "rag:13421",
+        "rag:13436",
+        "rag:13438",
+        "rag:13439",
+        "rag:13456",
+        "rag:13549",
+        "rag:13553",
+        "rag:13571",
+        "rag:13572",
+        "rag:13574",
+        "rag:13577",
+        "rag:13593",
+        "rag:13608",
+        "rag:13615",
+        "rag:13618",
+        "rag:13628",
+        "rag:13656",
+        "rag:13657",
+        "rag:13658",
+        "rag:13660",
+        "rag:13669",
+        "rag:13674",
+        "rag:13676",
+        "rag:13679",
+        "rag:13691",
+        "rag:13704",
+        "rag:13706",
+        "rag:13712",
+        "rag:13723",
+        "rag:13726",
+        "rag:13728",
+        "rag:13729",
+        "rag:13730",
+        "rag:13731",
+        "rag:13758",
+        "rag:13794",
+        "rag:13796",
+        "rag:13799",
+        "rag:13800",
+        "rag:13801",
+        "rag:13809",
+        "rag:13832",
+        "rag:13835",
+        "rag:13863",
+        "rag:13864",
+        "rag:13865",
+        "rag:13892",
+        "rag:13965",
+        "rag:13966",
+        "rag:13980",
+        "rag:13982",
+        "rag:13996",
+        "rag:14019",
+        "rag:14079",
+        "rag:14081",
+        "rag:14084",
+        "rag:14089",
+        "rag:14092",
+        "rag:14126",
+        "rag:14141",
+        "rag:14189",
+        "rag:14222",
+        "rag:14240",
+        "rag:14245",
+        "rag:14247",
+        "rag:14259",
+        "rag:14261",
+        "rag:14262",
+        "rag:14269",
+        "rag:14271",
+        "rag:14275",
+        "rag:14276",
+        "rag:14277",
+        "rag:14279",
+        "rag:14336",
+        "rag:14337",
+        "rag:14370",
+        "rag:14372",
+        "rag:14373",
+        "rag:14374",
+        "rag:14375",
+        "rag:14406",
+        "rag:14407",
+        "rag:14411",
+        "rag:14435",
+        "rag:14450",
+        "rag:14451",
+        "rag:14452",
+        "rag:14455",
+        "rag:14456",
+        "rag:14460",
+        "rag:14463",
+        "rag:14465",
+        "rag:14480",
+        "rag:14486",
+        "rag:14552",
+        "rag:14555",
+        "rag:14571",
+        "rag:14575",
+        "rag:14577",
+        "rag:14586",
+        "rag:14590",
+        "rag:14594",
+        "rag:14596",
+        "rag:14597",
+        "rag:14626",
+        "rag:14627",
+        "rag:14628",
+        "rag:14632",
+        "rag:14638",
+        "rag:14683",
+        "rag:14706",
+        "rag:14711",
+        "rag:14732",
+        "rag:14734",
+        "rag:14738",
+        "rag:14766",
+        "rag:14771",
+        "rag:14800",
+        "rag:14827",
+        "rag:14868",
+        "rag:14881",
+        "rag:14907",
+        "rag:14910",
+        "rag:14911",
+        "rag:14914",
+        "rag:14915",
+        "rag:14920",
+        "rag:14948",
+        "rag:14951",
+        "rag:14958",
+        "rag:14978",
+        "rag:14982",
+        "rag:14986",
+        "rag:15039",
+        "rag:15049",
+        "rag:15082",
+        "rag:15120",
+        "rag:15121",
+        "rag:15125",
+        "rag:15147",
+        "rag:15186",
+        "rag:15188",
+        "rag:15191",
+        "rag:15224",
+        "rag:15227",
+        "rag:15253",
+        "rag:15254",
+        "rag:15256",
+        "rag:15265",
+        "rag:15269",
+        "rag:15278",
+        "rag:15279",
+        "rag:15300",
+        "rag:15301",
+        "rag:15314",
+        "rag:15316",
+        "rag:15326",
+        "rag:15327",
+        "rag:15329",
+        "rag:15353",
+        "rag:15355",
+        "rag:15358",
+        "rag:15361",
+        "rag:15386",
+        "rag:15396",
+        "rag:15397",
+        "rag:15398",
+        "rag:15403",
+        "rag:15405",
+        "rag:15407",
+        "rag:15410",
+        "rag:15411",
+        "rag:15413",
+        "rag:15414",
+        "rag:15415",
+        "rag:15473",
+        "rag:15486",
+        "rag:15488",
+        "rag:15491",
+        "rag:15492",
+        "rag:15497",
+        "rag:15498",
+        "rag:15500",
+        "rag:15502",
+        "rag:15503",
+        "rag:15517",
+        "rag:15518",
+        "rag:15519",
+        "rag:15565",
+        "rag:15568",
+        "rag:15573",
+        "rag:15574",
+        "rag:15592",
+        "rag:15593",
+        "rag:15596",
+        "rag:15600",
+        "rag:15601",
+        "rag:15608",
+        "rag:15618",
+        "rag:15620",
+        "rag:15632",
+        "rag:15633",
+        "rag:15634",
+        "rag:15654",
+        "rag:15671",
+        "rag:15705",
+        "rag:15706",
+        "rag:15707",
+        "rag:15720",
+        "rag:15721",
+        "rag:15722",
+        "rag:15740",
+        "rag:15741",
+        "rag:15742",
+        "rag:15761",
+        "rag:15770",
+        "rag:15773",
+        "rag:15792",
+        "rag:15794",
+        "rag:15795",
+        "rag:15812",
+        "rag:15814",
+        "rag:15815",
+        "rag:15841",
+        "rag:15852",
+        "rag:15854",
+        "rag:15855",
+        "rag:15856",
+        "rag:15859",
+        "rag:15860",
+        "rag:15888",
+        "rag:15893",
+        "rag:15894",
+        "rag:15895",
+        "rag:15898",
+        "rag:15919",
+        "rag:15921",
+        "rag:15936",
+        "rag:15939",
+        "rag:15943",
+        "rag:15945",
+        "rag:15948",
+        "rag:15960",
+        "rag:15963",
+        "rag:15965",
+        "rag:15981",
+        "rag:15982",
+        "rag:15994",
+        "rag:15995",
+        "rag:16010",
+        "rag:16014",
+        "rag:16043",
+        "rag:16067",
+        "rag:16070",
+        "rag:16071",
+        "rag:16073",
+        "rag:16078",
+        "rag:16079",
+        "rag:16083",
+        "rag:16107",
+        "rag:16108",
+        "rag:16162",
+        "rag:16171",
+        "rag:16174",
+        "rag:16183",
+        "rag:16185",
+        "rag:16187",
+        "rag:16189",
+        "rag:16190",
+        "rag:16193",
+        "rag:16237",
+        "rag:16243",
+        "rag:16272",
+        "rag:16274",
+        "rag:16279",
+        "rag:16280",
+        "rag:16283",
+        "rag:16285",
+        "rag:16310",
+        "rag:16314",
+        "rag:16319",
+        "rag:16323",
+        "rag:16324",
+        "rag:16350",
+        "rag:16352",
+        "rag:16366",
+        "rag:16367",
+        "rag:16390",
+        "rag:16404",
+        "rag:16408",
+        "rag:16426",
+        "rag:16429",
+        "rag:16431",
+        "rag:16432",
+        "rag:16433",
+        "rag:16440",
+        "rag:16447",
+        "rag:16478",
+        "rag:16482",
+        "rag:16485",
+        "rag:16487",
+        "rag:16522",
+        "rag:16569",
+        "rag:16614",
+        "rag:16617",
+        "rag:16621",
+        "rag:16638",
+        "rag:16642",
+        "rag:16653",
+        "rag:16654",
+        "rag:16655",
+        "rag:16707",
+        "rag:16708",
+        "rag:16725",
+        "rag:16747",
+        "rag:16760",
+        "rag:16763",
+        "rag:16776",
+        "rag:16781",
+        "rag:16801",
+        "rag:16803",
+        "rag:16816",
+        "rag:16842",
+        "rag:16846",
+        "rag:16847",
+        "rag:16920",
+        "rag:16921",
+        "rag:16922",
+        "rag:16944",
+        "rag:16945",
+        "rag:16946",
+        "rag:16947",
+        "rag:16956",
+        "rag:17018",
+        "rag:17019",
+        "rag:17021",
+        "rag:17022",
+        "rag:17024",
+        "rag:17047",
+        "rag:17118",
+        "rag:17180",
+        "rag:17181",
+        "rag:17185",
+        "rag:17187",
+        "rag:17213",
+        "rag:17241",
+        "rag:17245",
+        "rag:17248",
+        "rag:17257",
+        "rag:17261",
+        "rag:17267",
+        "rag:17276",
+        "rag:17278",
+        "rag:17279",
+        "rag:17287",
+        "rag:17288",
+        "rag:17289",
+        "rag:17291",
+        "rag:17302",
+        "rag:17304",
+        "rag:17307",
+        "rag:17309",
+        "rag:17323",
+        "rag:17325",
+        "rag:17352",
+        "rag:17354",
+        "rag:17362",
+        "rag:17371",
+        "rag:17378",
+        "rag:17382",
+        "rag:17389",
+        "rag:17390",
+        "rag:17392",
+        "rag:17402",
+        "rag:17404",
+        "rag:17415",
+        "rag:17416",
+        "rag:17428",
+        "rag:17430",
+        "rag:17431",
+        "rag:17435",
+        "rag:17456",
+        "rag:17480",
+        "rag:17483",
+        "rag:17500",
+        "rag:17508",
+        "rag:17512",
+        "rag:17583",
+        "rag:17586",
+        "rag:17635",
+        "rag:17643",
+        "rag:17644",
+        "rag:17650",
+        "rag:17671",
+        "rag:17675",
+        "rag:17678",
+        "rag:17679",
+        "rag:17683",
+        "rag:17684",
+        "rag:17762",
+        "rag:17766",
+        "rag:17768",
+        "rag:17769",
+        "rag:17770",
+        "rag:17784",
+        "rag:17785",
+        "rag:17786"
+      ],
+      "reference_counts": {
+        "no": 369,
+        "yes": 169
+      },
+      "variants": {
+        "deepseek-json:D": {
+          "predictions": {
+            "no": 337,
+            "yes": 201
+          },
+          "statuses": {
+            "ok": 538
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 292,
+                "yes": 77,
+                "invalid": 0
+              },
+              "yes": {
+                "no": 45,
+                "yes": 124,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.8664688427299704,
+                "recall": 0.7913279132791328,
+                "f1": 0.8271954674220963,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.6169154228855721,
+                "recall": 0.7337278106508875,
+                "f1": 0.6702702702702703,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7732342007434945,
+            "macro_f1": 0.7487328688461833,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7732342007434945,
+            "false_pass_rate": 0.26627218934911245,
+            "clean_contamination": 0.13353115727002968
+          },
+          "latency": {
+            "successful_n": 538,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.8789346255362034,
+            "all_attempt_p50": 0.8789346255362034,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.1244949767482466,
+            "all_attempt_p95": 1.1244949767482466,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.09427114126394051,
+          "errors": {}
+        },
+        "deepseek-json:P": {
+          "predictions": {
+            "no": 355,
+            "yes": 183
+          },
+          "statuses": {
+            "ok": 538
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 298,
+                "yes": 71,
+                "invalid": 0
+              },
+              "yes": {
+                "no": 57,
+                "yes": 112,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.8394366197183099,
+                "recall": 0.8075880758807588,
+                "f1": 0.8232044198895028,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.6120218579234973,
+                "recall": 0.6627218934911243,
+                "f1": 0.6363636363636364,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7620817843866171,
+            "macro_f1": 0.7297840281265695,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7620817843866171,
+            "false_pass_rate": 0.33727810650887574,
+            "clean_contamination": 0.16056338028169015
+          },
+          "latency": {
+            "successful_n": 538,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.8872000409755856,
+            "all_attempt_p50": 0.8872000409755856,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.1254887311835773,
+            "all_attempt_p95": 1.1254887311835773,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.09757051672862453,
+          "errors": {}
+        },
+        "deepseek-strict:D": {
+          "predictions": {
+            "invalid": 505,
+            "no": 17,
+            "yes": 16
+          },
+          "statuses": {
+            "parse_error": 505,
+            "ok": 33
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 15,
+                "yes": 6,
+                "invalid": 348
+              },
+              "yes": {
+                "no": 2,
+                "yes": 10,
+                "invalid": 157
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.8823529411764706,
+                "recall": 0.04065040650406504,
+                "f1": 0.07772020725388601,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.625,
+                "recall": 0.05917159763313609,
+                "f1": 0.10810810810810811,
+                "support": 169
+              }
+            },
+            "accuracy": 0.046468401486988845,
+            "macro_f1": 0.09291415768099706,
+            "valid_coverage": 0.06133828996282528,
+            "valid_accuracy": 0.7575757575757576,
+            "false_pass_rate": 0.011834319526627219,
+            "clean_contamination": 0.11764705882352941
+          },
+          "latency": {
+            "successful_n": 33,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 505,
+            "successful_p50": 0.8462426250334829,
+            "all_attempt_p50": null,
+            "all_attempt_p50_unobserved": true,
+            "successful_p95": 1.2141104504233227,
+            "all_attempt_p95": null,
+            "all_attempt_p95_unobserved": true
+          },
+          "usd_per_1k": 0.12943034386617103,
+          "errors": {
+            "malformed_json": 493,
+            "schema:type": 12
+          }
+        },
+        "deepseek-strict:P": {
+          "predictions": {
+            "no": 369,
+            "yes": 169
+          },
+          "statuses": {
+            "ok": 538
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 307,
+                "yes": 62,
+                "invalid": 0
+              },
+              "yes": {
+                "no": 62,
+                "yes": 107,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.8319783197831978,
+                "recall": 0.8319783197831978,
+                "f1": 0.8319783197831978,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.6331360946745562,
+                "recall": 0.6331360946745562,
+                "f1": 0.6331360946745562,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7695167286245354,
+            "macro_f1": 0.7325572072288771,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7695167286245354,
+            "false_pass_rate": 0.3668639053254438,
+            "clean_contamination": 0.16802168021680217
+          },
+          "latency": {
+            "successful_n": 538,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.9288784165401012,
+            "all_attempt_p50": 0.9288784165401012,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.2126924081007018,
+            "all_attempt_p95": 1.2126924081007018,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.09916575278810409,
+          "errors": {}
+        },
+        "glm-current:D": {
+          "predictions": {
+            "no": 347,
+            "yes": 186,
+            "invalid": 5
+          },
+          "statuses": {
+            "ok": 533,
+            "parse_error": 5
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 301,
+                "yes": 66,
+                "invalid": 2
+              },
+              "yes": {
+                "no": 46,
+                "yes": 120,
+                "invalid": 3
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.8674351585014409,
+                "recall": 0.8157181571815718,
+                "f1": 0.840782122905028,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.6451612903225806,
+                "recall": 0.7100591715976331,
+                "f1": 0.676056338028169,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7825278810408922,
+            "macro_f1": 0.7584192304665984,
+            "valid_coverage": 0.9907063197026023,
+            "valid_accuracy": 0.7898686679174484,
+            "false_pass_rate": 0.27218934911242604,
+            "clean_contamination": 0.13256484149855907
+          },
+          "latency": {
+            "successful_n": 533,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 5,
+            "successful_p50": 1.4172895420342684,
+            "all_attempt_p50": 1.4214696061760745,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 2.560050516785122,
+            "all_attempt_p95": 2.712031532828014,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.09925546468401486,
+          "errors": {
+            "malformed_json": 3,
+            "schema:required": 2
+          }
+        },
+        "glm-current:P": {
+          "predictions": {
+            "no": 348,
+            "yes": 167,
+            "invalid": 23
+          },
+          "statuses": {
+            "ok": 515,
+            "parse_error": 23
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 302,
+                "yes": 58,
+                "invalid": 9
+              },
+              "yes": {
+                "no": 46,
+                "yes": 109,
+                "invalid": 14
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.867816091954023,
+                "recall": 0.8184281842818428,
+                "f1": 0.8423988842398884,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.6526946107784432,
+                "recall": 0.6449704142011834,
+                "f1": 0.6488095238095238,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7639405204460966,
+            "macro_f1": 0.7456042040247062,
+            "valid_coverage": 0.9572490706319703,
+            "valid_accuracy": 0.7980582524271844,
+            "false_pass_rate": 0.27218934911242604,
+            "clean_contamination": 0.13218390804597702
+          },
+          "latency": {
+            "successful_n": 515,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 23,
+            "successful_p50": 1.3660176249686629,
+            "all_attempt_p50": 1.4015275419459146,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 2.462164083064997,
+            "all_attempt_p95": 4.551654404946687,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.104537843866171,
+          "errors": {
+            "malformed_json": 23
+          }
+        },
+        "jev:P": {
+          "predictions": {
+            "no": 281,
+            "yes": 257
+          },
+          "statuses": {
+            "ok": 538
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 254,
+                "yes": 115,
+                "invalid": 0
+              },
+              "yes": {
+                "no": 27,
+                "yes": 142,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.9039145907473309,
+                "recall": 0.6883468834688347,
+                "f1": 0.7815384615384615,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.5525291828793775,
+                "recall": 0.8402366863905325,
+                "f1": 0.6666666666666666,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7360594795539034,
+            "macro_f1": 0.724102564102564,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7360594795539034,
+            "false_pass_rate": 0.15976331360946747,
+            "clean_contamination": 0.09608540925266904
+          },
+          "latency": {
+            "successful_n": 538,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.3290031664655544,
+            "all_attempt_p50": 0.3290031664655544,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 0.5083592812705319,
+            "all_attempt_p95": 0.5083592812705319,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.03749733457249071,
+          "errors": {}
+        },
+        "luna:D": {
+          "predictions": {
+            "no": 272,
+            "yes": 266
+          },
+          "statuses": {
+            "ok": 538
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 253,
+                "yes": 116,
+                "invalid": 0
+              },
+              "yes": {
+                "no": 19,
+                "yes": 150,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.9301470588235294,
+                "recall": 0.6856368563685636,
+                "f1": 0.7893915756630265,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.5639097744360902,
+                "recall": 0.8875739644970414,
+                "f1": 0.6896551724137931,
+                "support": 169
+              }
+            },
+            "accuracy": 0.7490706319702602,
+            "macro_f1": 0.7395233740384098,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7490706319702602,
+            "false_pass_rate": 0.11242603550295859,
+            "clean_contamination": 0.06985294117647059
+          },
+          "latency": {
+            "successful_n": 538,
+            "attempted_n": 538,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.7861677500186488,
+            "all_attempt_p50": 0.7861677500186488,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.3091010661912148,
+            "all_attempt_p95": 1.3091010661912148,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.15892726765799256,
+          "errors": {}
+        },
+        "luna:P": {
+          "predictions": {
+            "no": 255,
+            "yes": 282,
+            "invalid": 1
+          },
+          "statuses": {
+            "ok": 537,
+            "timeout": 1
+          },
+          "quality": {
+            "n": 538,
+            "confusion_matrix": {
+              "no": {
+                "no": 231,
+                "yes": 138,
+                "invalid": 0
+              },
+              "yes": {
+                "no": 24,
+                "yes": 144,
+                "invalid": 1
+              }
+            },
+            "per_class": {
+              "no": {
+                "precision": 0.9058823529411765,
+                "recall": 0.6260162601626016,
+                "f1": 0.7403846153846154,
+                "support": 369
+              },
+              "yes": {
+                "precision": 0.5106382978723404,
+                "recall": 0.8520710059171598,
+                "f1": 0.6385809312638581,
+                "support": 169
+              }
+            },
+            "accuracy": 0.6970260223048327,
+            "macro_f1": 0.6894827733242368,
+            "valid_coverage": 0.9981412639405205,
+            "valid_accuracy": 0.6983240223463687,
+            "false_pass_rate": 0.14201183431952663,
+            "clean_contamination": 0.09411764705882353
+          },
+          "latency": {
+            "successful_n": 537,
+            "attempted_n": 538,
+            "timeout_n": 1,
+            "failure_n": 1,
+            "successful_p50": 0.8114624590380117,
+            "all_attempt_p50": 0.8115525823301121,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.4312138833571224,
+            "all_attempt_p95": 1.4400161155802145,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": null,
+          "errors": {
+            "timeout": 1
+          }
+        }
+      }
+    },
+    "anli": {
+      "ids": [
+        "anli:00bc2118-5cea-42d9-a7d1-0ee4aa7cd731",
+        "anli:016fcefa-3514-4568-b9db-f996cc54a6bc",
+        "anli:05d91059-0f1b-4b04-83c0-31259729f500",
+        "anli:074e56ca-07ad-47bf-8169-e619e286b950",
+        "anli:0968cfbc-d334-4bd3-b5b9-ef75fc6410f1",
+        "anli:0a517ace-0dcb-454b-9180-e8165eb28307",
+        "anli:0aca101a-1884-45d0-9956-c5a1e0273939",
+        "anli:0bff7d52-3474-48c3-9f7e-8495277b6efd",
+        "anli:0cc42072-b84f-44a0-a07a-3375ce0ab358",
+        "anli:0cd0411a-a90f-42b0-a5d1-fc6640a9325c",
+        "anli:119bf918-35fc-442e-8b8d-803e4123dd4a",
+        "anli:1206bf3a-51c6-4298-b15b-59c4a7f93381",
+        "anli:12d9152b-9927-4796-b502-47aa7c53eaec",
+        "anli:12d95aa7-6cf1-43f6-8988-e99936973562",
+        "anli:1799a4bc-82b6-47e0-9cb0-a27031c43992",
+        "anli:1815e836-a361-4e98-a0a8-847009885909",
+        "anli:18aaca91-ebcc-444c-add5-7fd97f6cec2a",
+        "anli:19308d78-3dd2-4dd7-ba60-0206442c123d",
+        "anli:193a46bf-7341-4351-b5cb-af5ae0ecd378",
+        "anli:1a20627c-3ea4-4f43-90c2-8b17e5269d87",
+        "anli:1d2d0c9f-b276-466b-930f-2aa351e7c476",
+        "anli:1e8f183a-b85f-4415-aa30-f7abaed6c978",
+        "anli:1f3ed78d-1ae4-4d13-99f6-073b2ca0a250",
+        "anli:208805f2-559f-4808-98c3-3870b513cf59",
+        "anli:272369c1-4341-46e8-a1ed-62f0e4a73cd0",
+        "anli:2bbc8a95-8ef6-4988-82b8-e2ad1ee621fd",
+        "anli:2cca9cf5-c8ab-4c07-9af4-cf46a7344468",
+        "anli:2d9f131b-8f22-4d59-a413-3d0b0636e71a",
+        "anli:2ea5cf6d-e869-4a54-8c15-a576343a4e65",
+        "anli:31113e42-bfce-4206-abae-3eb4d20a6516",
+        "anli:322e5154-4f81-46c0-b8c4-589b4ea1f262",
+        "anli:33219c1f-942e-4001-86b6-2fc1331f3daa",
+        "anli:333c2054-f58d-48da-b1b3-9ebcfa247573",
+        "anli:33e81886-35e3-46c3-9e77-458021bf18e0",
+        "anli:34c51779-5392-4b7e-a636-882887367656",
+        "anli:36387240-b802-4481-a718-c58edc3b4b76",
+        "anli:36b32282-6f7d-471c-8853-e17a7ababa78",
+        "anli:376f00e9-961e-4208-b88e-020ef1d15e84",
+        "anli:38dbe44f-bc2d-43a6-970c-5b22a6c8ba63",
+        "anli:38e69d60-e1ad-4a8e-9335-c1a08d80ec8a",
+        "anli:3935fbd7-480b-4032-9244-802b3d4624f7",
+        "anli:3a2a05a9-fa26-4915-8794-140c15400216",
+        "anli:3bb4be00-9ddd-4475-bc33-8c629c479973",
+        "anli:3d16b285-1080-4fa3-b705-d75e4ec0b736",
+        "anli:3d6523aa-dbd4-406d-accb-2db2de4a2fbd",
+        "anli:3d71169e-d02e-4331-a60c-34440086bb7e",
+        "anli:40328cfb-820f-4500-a04a-f7f7886faa59",
+        "anli:41d2c366-1bfa-4c57-943d-1663b226a990",
+        "anli:42067e34-2ca9-406f-91d6-6ce9fed2ae03",
+        "anli:43f274ea-2088-42b5-b843-41aaf055c08e",
+        "anli:449d469d-e029-4538-9e4e-40014c502fcf",
+        "anli:44b13964-a8c0-49a7-a10e-c63f0072749b",
+        "anli:458b2750-75e5-4df8-b266-c94d458895ce",
+        "anli:458d6efc-f409-4817-9b4e-ba0648d52573",
+        "anli:46f4d75d-672e-4b26-930f-9542a05ff4a3",
+        "anli:497e992c-df5d-42a9-b1c0-7383d8f26f22",
+        "anli:4a2b8ba7-2009-48d8-af21-1a71d550d01c",
+        "anli:4bbef61c-ce9b-40aa-8b52-af944f251e64",
+        "anli:4d044c35-a044-4b29-b94e-ee78ec32b298",
+        "anli:4d599f75-4481-498a-a8fc-e6cb5b5fd1eb",
+        "anli:4dc2e8e3-486a-4165-98e1-b54873d0b144",
+        "anli:4f99b962-ea5e-408d-99f0-049225b05cf0",
+        "anli:53bcfcee-98e4-4542-ac14-57787ab62e5f",
+        "anli:554a7d50-1633-45c9-baa4-cdad167755bc",
+        "anli:55bd892d-e09b-4e23-aec3-7a53f586a4b6",
+        "anli:55ef173c-54ac-4760-a0ea-0cefb878f9eb",
+        "anli:59d15646-97f5-4e4e-8600-df5d6bc25d68",
+        "anli:59e9c100-c54e-4a93-8d77-770787ef9ae0",
+        "anli:5b724742-2e07-4cc1-92fd-230f2a8bd93d",
+        "anli:5d25744d-3ffe-4221-870d-fa6739a16e3a",
+        "anli:5d75735f-317d-40c7-926c-b0b8187ecdca",
+        "anli:5f5716c0-6fe8-41c4-82dd-4fc45c045554",
+        "anli:618ef823-47b2-4814-a195-fa34f7eddbec",
+        "anli:62b6cc0a-6970-4022-94bf-0b261f4ecb4e",
+        "anli:62e7af68-80d8-48d3-80d7-d66fefd66927",
+        "anli:63fde254-2b4c-4cd0-8a73-fe74939b62e4",
+        "anli:64683751-7906-4e57-abac-1f61b97d453c",
+        "anli:64c9bbbd-da85-4ad9-b1f8-57e533f6c38c",
+        "anli:66586524-0a3f-4da5-95af-2f16f6cb1842",
+        "anli:666abbab-ab79-4481-a0e9-ec3ad58dccd4",
+        "anli:669acd63-28ba-4aca-8122-7a2468f1c64b",
+        "anli:6be7f38a-61d3-47de-a1d4-e6a6546db9c1",
+        "anli:6d0569ac-a6ca-4218-a3db-522764e1e18a",
+        "anli:6da677c9-4633-4497-b059-e6a3d053c0bc",
+        "anli:6e037717-ced9-4758-8a2f-f016f60cfe3f",
+        "anli:6e4c9eaa-f12a-4c10-9b24-5540344c295d",
+        "anli:6e91f2e2-4aa6-435b-9850-9c9d0b0368a0",
+        "anli:6f63adad-3514-4425-8c9f-13b445416150",
+        "anli:702a9408-1689-4b65-a8c2-92d8104c485a",
+        "anli:718ac4d7-ef95-4993-85ef-c35fb30531a1",
+        "anli:72d29725-6a95-482c-a2f1-9ef57159d1c0",
+        "anli:7403de23-2f55-4948-88c2-4cf613659ac8",
+        "anli:7410f932-8754-4212-81c1-27603edef347",
+        "anli:7560988c-b4aa-429d-840f-872d5a431433",
+        "anli:77d68a9b-929f-4cc9-9fce-17091520e10c",
+        "anli:7882ee40-f584-46db-9b9e-fec06f11df2a",
+        "anli:793b78ee-2d69-41c2-b407-1525612455e6",
+        "anli:7b18c9c0-ed9f-4005-b62d-ab899d9038f0",
+        "anli:7c7668b0-eea0-4c6a-9103-73d896fa4417",
+        "anli:7c7e3b4f-6020-4c1d-8241-cfc33637fbf4",
+        "anli:7cd636ef-ee0e-4f31-9138-5e6b5098f262",
+        "anli:7d3578a3-8cd3-4b01-93cb-f5a1af6f74e8",
+        "anli:7dac892b-4478-4945-bb31-a9786291183b",
+        "anli:7f61f25d-423d-4bfa-a4fe-707d278c7c40",
+        "anli:86880974-8034-40fd-a30d-728172ef2f06",
+        "anli:88c87f49-063b-4d2c-bb3c-cbb751113fa1",
+        "anli:8bdb5483-99f7-47dc-a350-9440eb4ddb7d",
+        "anli:8c0fa8b1-6ebc-49c3-8c2e-0dbecd56b66f",
+        "anli:8cddc929-3503-422b-bbee-7905fe3fddfd",
+        "anli:8d4abea1-a115-411f-9273-ea3de3c2f203",
+        "anli:8e9c1407-ab17-4a1c-8d2c-5edec6effbd2",
+        "anli:8f261706-a2ab-4cac-82ae-c8d88ef9f481",
+        "anli:9112bd38-6301-448a-b953-a260888d5351",
+        "anli:93bc21f3-1597-41f0-9957-6823b58c9d00",
+        "anli:945111b6-1089-4a26-951f-9bdc7995b984",
+        "anli:9455eef6-f1a1-43f6-bfcb-8bd6d4e78aa4",
+        "anli:95086ad5-d521-4e56-856e-29f23b2e1b7a",
+        "anli:958fe651-a6e8-4194-b915-8afd479cb582",
+        "anli:95958c59-f483-4f23-9aa7-cd90b91f25e2",
+        "anli:9608f8b7-a312-4021-93fa-b5fe19eab634",
+        "anli:9733706f-ae14-479c-a2a4-cd3d0810fc71",
+        "anli:973c5638-c928-4d65-bf1e-80d0fe38001e",
+        "anli:98ef38cd-8321-45b9-b5b9-70e8f4e7c5c8",
+        "anli:9aa13c8c-9b83-47cc-804e-f743b91d10d1",
+        "anli:9d5238d0-ee23-44a8-8281-2badb9f1a7ef",
+        "anli:9f042e2c-4143-42d0-bcc1-80b5224f511f",
+        "anli:9f8d1b7e-1aea-4ba8-8d9b-8904d413a55d",
+        "anli:a1d81b0f-247e-404b-a58e-5ea50c542944",
+        "anli:a403f774-b5fe-4b95-8cc8-c6eb485425c1",
+        "anli:a5379164-b5fa-49e4-9606-d7968fc85168",
+        "anli:a58afe56-0d93-4bae-9d52-83701627198d",
+        "anli:a7796b20-b3b5-40c9-a4b9-d3addc022393",
+        "anli:aad5742a-baea-4ee2-aaa4-3534d593e90c",
+        "anli:ad30dba6-8d1a-499c-8c39-49be792e86f0",
+        "anli:ad6b5a78-2ff7-41e6-8144-98130ab76d0f",
+        "anli:adddf42d-f9f7-4ba7-b202-f8be2f5aef15",
+        "anli:ae0e54c5-44b1-453d-b8f4-0515e4ce73bc",
+        "anli:ae501d40-dd4d-4284-baab-5ac9659ccae8",
+        "anli:af1d76b1-1964-4f82-8d69-ede2fb246ceb",
+        "anli:af4b59b1-67a4-4b46-a94e-db1eb23cef46",
+        "anli:b057a720-c386-4eb2-995a-17a0ccc6fd07",
+        "anli:b0602199-6a7a-43bd-a1a1-4bfa4cf6b42c",
+        "anli:b10376ce-55a4-4629-b3c0-df391526b752",
+        "anli:b17faa02-91ff-45cf-9931-a5be60c2ec2a",
+        "anli:b1be5b29-3bbd-4acc-a482-bfa0f0644291",
+        "anli:b2bec479-f51a-4766-96a8-bef92af3635d",
+        "anli:b5f471b4-b565-4d8a-a8d6-ccc8e285e75e",
+        "anli:b7afba4c-b63c-4066-a76a-74d4bd1f412d",
+        "anli:b818b4d6-c624-4702-afee-6ec3f81692f1",
+        "anli:b8a65e30-eb30-47d4-a8f0-7e4618fc2647",
+        "anli:ba5d5b9a-50af-43fb-abad-208fc937068d",
+        "anli:bcc87d95-8170-4d28-9f9c-cb29ef46f88f",
+        "anli:bdc5fbc4-1f13-4f85-8587-45b7e487f5d5",
+        "anli:becb384b-c07a-4da2-952f-ec47061410cf",
+        "anli:bf69ef80-0c98-493e-9044-f1ae8d1c638b",
+        "anli:c06b70b5-d8e7-4722-b1a9-2040b39ce5f2",
+        "anli:c0e07f65-96f8-4a51-93f4-3cd374078b15",
+        "anli:c0fc6848-3fc4-4ccd-9571-14180766455a",
+        "anli:c219b7a6-0949-45fc-ac94-5228cacc595a",
+        "anli:c3401167-b05f-42e7-bbbd-f9744fefb794",
+        "anli:c3c01d55-11c5-47f2-8896-be655b0f4a7b",
+        "anli:c59e133e-5801-4d28-ae1b-cfb4c39b379c",
+        "anli:c5bda571-ae45-4732-9939-05b3b6a3c180",
+        "anli:c5c99fe8-d2cc-4a35-bee0-acb072c9a4c7",
+        "anli:c8802c0f-4942-4dd5-b566-b814afbed326",
+        "anli:cc585081-0e92-41f7-b909-d9034ccd5749",
+        "anli:cd8a6bdb-bec3-4ea2-af83-12e87a479a89",
+        "anli:cdfc4454-1826-49a6-8533-c914e9afbe33",
+        "anli:ce1e9635-18b3-446c-b419-914794bf49c3",
+        "anli:cf524462-7dbf-4244-b11e-1a25e53fe902",
+        "anli:d029e33c-b90f-44fe-8b08-cb2032d06c16",
+        "anli:d0a98dc9-e7a6-4df3-ad0f-1141797473c5",
+        "anli:d1deaa58-dc68-4eb3-9313-1b9c6e7102e3",
+        "anli:d2a746ef-984f-4e26-be40-c93e9bbc20bb",
+        "anli:d2bd8295-0fc6-40c0-95c7-7d2b7319f4b8",
+        "anli:d5a1278e-62aa-4926-8dc0-76189b9a6672",
+        "anli:d6723047-a5a7-4691-9aa2-553d7d669e5d",
+        "anli:d6d890d5-7c48-4ec7-b1d1-f5676a69a8e0",
+        "anli:db9b4695-18b7-4d7b-97a1-78ba28e54da6",
+        "anli:dc33e1c6-10ba-4f7c-9fbf-662eae6ca3dc",
+        "anli:dc7bad0a-db5e-4ef7-9623-95927e2c063e",
+        "anli:dc847097-8b85-4d90-b758-5c60d861ebd5",
+        "anli:dd110627-ca33-4716-877b-6cdb917de821",
+        "anli:ddb5a9d0-5641-4465-90bd-e79cb6d19ffd",
+        "anli:de1e5a92-bbaf-4e39-a98d-560f47c40afd",
+        "anli:de543c71-9a9c-4164-97a5-9f87b10b7aaa",
+        "anli:e099bdb8-b00a-4c6f-8510-871c4b5bc1fc",
+        "anli:e1c7ca7c-169f-46e1-994a-ec747ff21011",
+        "anli:e21f9f0d-8ef2-484e-b0d6-dd8c8da50673",
+        "anli:e301eeb0-ccd4-4eba-bd98-d6dacdbc80f5",
+        "anli:e3d221e1-6eb1-4870-a4ac-04c458afbdba",
+        "anli:e4d3f504-7be2-48e6-bd80-4ea7379f7cfe",
+        "anli:e6804b8e-2ca5-4d90-a0e8-1be238df6273",
+        "anli:e786393f-a885-4564-b5a8-478be1e1d48b",
+        "anli:e8c6d194-6a95-45c5-844b-5606f9be4262",
+        "anli:e9c7e540-3827-48aa-b3d4-79f4d8cc5b56",
+        "anli:eba8782d-d343-46d5-9579-8e51192a85e1",
+        "anli:ecefe5be-d31f-4829-87ff-2ced17fd6833",
+        "anli:ed624e7e-df46-40e9-9e5e-b3de31d9eda8",
+        "anli:ee53b9aa-bb41-4c5e-a69f-edda69589e48",
+        "anli:efe9023a-6b11-4a03-b518-16b08bab9062",
+        "anli:f102e6cd-f677-472e-b0c5-75289c8858ab",
+        "anli:f24a2852-bf49-48cb-b65f-4911e134f14a",
+        "anli:f3985ad3-4b06-4416-83ac-9592606952e7",
+        "anli:f3e1b6ab-4a0c-4182-903e-107f322a103c",
+        "anli:f3f011b3-45bc-4028-8608-8aed0796d078",
+        "anli:f529b378-a3ea-4b97-b36d-6686bdcf31e2",
+        "anli:f68b49a0-e87c-4adc-bb76-8d8b7c9c04d1",
+        "anli:f6c11e1c-caf5-4404-afa6-f16955b4e88a",
+        "anli:f75c4068-1bf6-4019-927b-17399efbbefa",
+        "anli:f7afb79b-c1a0-4020-af91-a4a1647d3ebb",
+        "anli:fa0d0519-9681-4e66-aa4a-418950efaf51",
+        "anli:fadae5fe-d719-4375-b372-d16363bccbdb",
+        "anli:fb67fba4-ebb8-4b6e-9beb-5c15ee076d87",
+        "anli:fb98918d-b193-40ad-813e-d6829da677bb",
+        "anli:fd367575-af63-4c15-86b7-d04c90501854",
+        "anli:fe7e1f73-b843-4a6e-856a-ce7753a6dde0"
+      ],
+      "reference_counts": {
+        "supported": 77,
+        "contradicted": 58,
+        "insufficient_evidence": 82
+      },
+      "variants": {
+        "deepseek-json:D": {
+          "predictions": {
+            "contradicted": 50,
+            "insufficient_evidence": 87,
+            "supported": 80
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 62,
+                "contradicted": 3,
+                "insufficient_evidence": 12,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 4,
+                "contradicted": 44,
+                "insufficient_evidence": 10,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 14,
+                "contradicted": 3,
+                "insufficient_evidence": 65,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.775,
+                "recall": 0.8051948051948052,
+                "f1": 0.7898089171974523,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.88,
+                "recall": 0.7586206896551724,
+                "f1": 0.8148148148148148,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7471264367816092,
+                "recall": 0.7926829268292683,
+                "f1": 0.7692307692307693,
+                "support": 82
+              }
+            },
+            "accuracy": 0.7880184331797235,
+            "macro_f1": 0.7912848337476787,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7880184331797235
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.8826148340012878,
+            "all_attempt_p50": 0.8826148340012878,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.116375891608186,
+            "all_attempt_p95": 1.1163758916081858,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.03229475115207373,
+          "errors": {}
+        },
+        "deepseek-json:P": {
+          "predictions": {
+            "contradicted": 48,
+            "insufficient_evidence": 107,
+            "supported": 62
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 53,
+                "contradicted": 5,
+                "insufficient_evidence": 19,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 3,
+                "contradicted": 40,
+                "insufficient_evidence": 15,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 6,
+                "contradicted": 3,
+                "insufficient_evidence": 73,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.8548387096774194,
+                "recall": 0.6883116883116883,
+                "f1": 0.762589928057554,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.8333333333333334,
+                "recall": 0.6896551724137931,
+                "f1": 0.7547169811320755,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.6822429906542056,
+                "recall": 0.8902439024390244,
+                "f1": 0.7724867724867724,
+                "support": 82
+              }
+            },
+            "accuracy": 0.7649769585253456,
+            "macro_f1": 0.7632645605588007,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7649769585253456
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.8984044160461053,
+            "all_attempt_p50": 0.8984044160461053,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.1302227499196305,
+            "all_attempt_p95": 1.1302227499196302,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.04881265437788019,
+          "errors": {}
+        },
+        "deepseek-strict:D": {
+          "predictions": {
+            "contradicted": 47,
+            "insufficient_evidence": 83,
+            "supported": 73,
+            "invalid": 14
+          },
+          "statuses": {
+            "ok": 203,
+            "parse_error": 14
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 60,
+                "contradicted": 2,
+                "insufficient_evidence": 14,
+                "invalid": 1
+              },
+              "contradicted": {
+                "supported": 4,
+                "contradicted": 42,
+                "insufficient_evidence": 10,
+                "invalid": 2
+              },
+              "insufficient_evidence": {
+                "supported": 9,
+                "contradicted": 3,
+                "insufficient_evidence": 59,
+                "invalid": 11
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.821917808219178,
+                "recall": 0.7792207792207793,
+                "f1": 0.8,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.8936170212765957,
+                "recall": 0.7241379310344828,
+                "f1": 0.8,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7108433734939759,
+                "recall": 0.7195121951219512,
+                "f1": 0.7151515151515152,
+                "support": 82
+              }
+            },
+            "accuracy": 0.7419354838709677,
+            "macro_f1": 0.7717171717171718,
+            "valid_coverage": 0.9354838709677419,
+            "valid_accuracy": 0.7931034482758621
+          },
+          "latency": {
+            "successful_n": 203,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 14,
+            "successful_p50": 0.9171752919210121,
+            "all_attempt_p50": 0.9323374705172368,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.1384677121648565,
+            "all_attempt_p95": null,
+            "all_attempt_p95_unobserved": true
+          },
+          "usd_per_1k": 0.052715889400921666,
+          "errors": {
+            "schema:enum": 14
+          }
+        },
+        "deepseek-strict:P": {
+          "predictions": {
+            "contradicted": 56,
+            "insufficient_evidence": 83,
+            "supported": 78
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 63,
+                "contradicted": 4,
+                "insufficient_evidence": 10,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 4,
+                "contradicted": 44,
+                "insufficient_evidence": 10,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 11,
+                "contradicted": 8,
+                "insufficient_evidence": 63,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.8076923076923077,
+                "recall": 0.8181818181818182,
+                "f1": 0.8129032258064516,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.7857142857142857,
+                "recall": 0.7586206896551724,
+                "f1": 0.7719298245614035,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7590361445783133,
+                "recall": 0.7682926829268293,
+                "f1": 0.7636363636363637,
+                "support": 82
+              }
+            },
+            "accuracy": 0.783410138248848,
+            "macro_f1": 0.7828231380014062,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.783410138248848
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 1.0010320000583306,
+            "all_attempt_p50": 1.0010320000583306,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.2273288500262425,
+            "all_attempt_p95": 1.2273288500262425,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.08729950230414747,
+          "errors": {}
+        },
+        "glm-current:D": {
+          "predictions": {
+            "supported": 78,
+            "contradicted": 45,
+            "insufficient_evidence": 94
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 65,
+                "contradicted": 3,
+                "insufficient_evidence": 9,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 4,
+                "contradicted": 40,
+                "insufficient_evidence": 14,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 9,
+                "contradicted": 2,
+                "insufficient_evidence": 71,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.8333333333333334,
+                "recall": 0.8441558441558441,
+                "f1": 0.8387096774193549,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.8888888888888888,
+                "recall": 0.6896551724137931,
+                "f1": 0.7766990291262136,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7553191489361702,
+                "recall": 0.8658536585365854,
+                "f1": 0.8068181818181818,
+                "support": 82
+              }
+            },
+            "accuracy": 0.8110599078341014,
+            "macro_f1": 0.8074089627879167,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.8110599078341014
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 1.436396166915074,
+            "all_attempt_p50": 1.436396166915074,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 3.131399908545426,
+            "all_attempt_p95": 3.131399908545423,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.042305898617511516,
+          "errors": {}
+        },
+        "glm-current:P": {
+          "predictions": {
+            "supported": 82,
+            "contradicted": 43,
+            "insufficient_evidence": 89,
+            "invalid": 3
+          },
+          "statuses": {
+            "ok": 214,
+            "parse_error": 3
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 65,
+                "contradicted": 2,
+                "insufficient_evidence": 8,
+                "invalid": 2
+              },
+              "contradicted": {
+                "supported": 5,
+                "contradicted": 39,
+                "insufficient_evidence": 13,
+                "invalid": 1
+              },
+              "insufficient_evidence": {
+                "supported": 12,
+                "contradicted": 2,
+                "insufficient_evidence": 68,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.7926829268292683,
+                "recall": 0.8441558441558441,
+                "f1": 0.8176100628930818,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.9069767441860465,
+                "recall": 0.6724137931034483,
+                "f1": 0.7722772277227723,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7640449438202247,
+                "recall": 0.8292682926829268,
+                "f1": 0.7953216374269005,
+                "support": 82
+              }
+            },
+            "accuracy": 0.7926267281105991,
+            "macro_f1": 0.7950696426809182,
+            "valid_coverage": 0.9861751152073732,
+            "valid_accuracy": 0.8037383177570093
+          },
+          "latency": {
+            "successful_n": 214,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 3,
+            "successful_p50": 1.4093645619577728,
+            "all_attempt_p50": 1.4126182745842406,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 2.380819816363509,
+            "all_attempt_p95": 2.4833185409255565,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.05374912442396314,
+          "errors": {
+            "probability_sum": 2,
+            "malformed_json": 1
+          }
+        },
+        "jev:P": {
+          "predictions": {
+            "contradicted": 48,
+            "insufficient_evidence": 92,
+            "supported": 77
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 64,
+                "contradicted": 1,
+                "insufficient_evidence": 12,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 4,
+                "contradicted": 43,
+                "insufficient_evidence": 11,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 9,
+                "contradicted": 4,
+                "insufficient_evidence": 69,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.8311688311688312,
+                "recall": 0.8311688311688312,
+                "f1": 0.8311688311688312,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.8958333333333334,
+                "recall": 0.7413793103448276,
+                "f1": 0.8113207547169812,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.75,
+                "recall": 0.8414634146341463,
+                "f1": 0.7931034482758621,
+                "support": 82
+              }
+            },
+            "accuracy": 0.8110599078341014,
+            "macro_f1": 0.8118643447205581,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.8110599078341014
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 0.32879291696008295,
+            "all_attempt_p50": 0.32879291696008295,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 0.537389950221404,
+            "all_attempt_p95": 0.5373899502214029,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.02102167741935484,
+          "errors": {}
+        },
+        "luna:D": {
+          "predictions": {
+            "contradicted": 57,
+            "insufficient_evidence": 89,
+            "supported": 71
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 57,
+                "contradicted": 3,
+                "insufficient_evidence": 17,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 5,
+                "contradicted": 45,
+                "insufficient_evidence": 8,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 9,
+                "contradicted": 9,
+                "insufficient_evidence": 64,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.8028169014084507,
+                "recall": 0.7402597402597403,
+                "f1": 0.7702702702702703,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.7894736842105263,
+                "recall": 0.7758620689655172,
+                "f1": 0.782608695652174,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7191011235955056,
+                "recall": 0.7804878048780488,
+                "f1": 0.7485380116959064,
+                "support": 82
+              }
+            },
+            "accuracy": 0.7649769585253456,
+            "macro_f1": 0.7671389925394502,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7649769585253456
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 1.0038566670846194,
+            "all_attempt_p50": 1.0038566670846194,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.5820347250672055,
+            "all_attempt_p95": 1.5820347250672053,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.07807649769585255,
+          "errors": {}
+        },
+        "luna:P": {
+          "predictions": {
+            "contradicted": 50,
+            "supported": 81,
+            "insufficient_evidence": 86
+          },
+          "statuses": {
+            "ok": 217
+          },
+          "quality": {
+            "n": 217,
+            "confusion_matrix": {
+              "supported": {
+                "supported": 62,
+                "contradicted": 4,
+                "insufficient_evidence": 11,
+                "invalid": 0
+              },
+              "contradicted": {
+                "supported": 6,
+                "contradicted": 40,
+                "insufficient_evidence": 12,
+                "invalid": 0
+              },
+              "insufficient_evidence": {
+                "supported": 13,
+                "contradicted": 6,
+                "insufficient_evidence": 63,
+                "invalid": 0
+              }
+            },
+            "per_class": {
+              "supported": {
+                "precision": 0.7654320987654321,
+                "recall": 0.8051948051948052,
+                "f1": 0.7848101265822784,
+                "support": 77
+              },
+              "contradicted": {
+                "precision": 0.8,
+                "recall": 0.6896551724137931,
+                "f1": 0.7407407407407407,
+                "support": 58
+              },
+              "insufficient_evidence": {
+                "precision": 0.7325581395348837,
+                "recall": 0.7682926829268293,
+                "f1": 0.75,
+                "support": 82
+              }
+            },
+            "accuracy": 0.7603686635944701,
+            "macro_f1": 0.7585169557743398,
+            "valid_coverage": 1.0,
+            "valid_accuracy": 0.7603686635944701
+          },
+          "latency": {
+            "successful_n": 217,
+            "attempted_n": 217,
+            "timeout_n": 0,
+            "failure_n": 0,
+            "successful_p50": 1.0061972079565749,
+            "all_attempt_p50": 1.0061972079565749,
+            "all_attempt_p50_unobserved": false,
+            "successful_p95": 1.460033208411187,
+            "all_attempt_p95": 1.4600332084111864,
+            "all_attempt_p95_unobserved": false
+          },
+          "usd_per_1k": 0.11929493087557604,
+          "errors": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "verified_at": "2026-09-20",
+  "currency": "USD",
+  "unit": "per_million_tokens",
+  "models": {
+    "luna": {
+      "provider": "OpenAI",
+      "model": "openai/gpt-5.6-luna",
+      "adapter": "responses",
+      "endpoint": "https://openrouter.ai/api/v1/responses",
+      "key_env": "OPENROUTER_API_KEY",
+      "profiles": [
+        "D"
+      ],
+      "reasoning_mode": "none",
+      "eligible_nonthinking": true,
+      "output_mode": "json_schema_strict",
+      "options": {
+        "reasoning": {
+          "effort": "none"
+        },
+        "store": false,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "context_limit": 1050000,
+      "max_output": 512,
+      "rates": {
+        "input": 0.2,
+        "cached_input": 0.02,
+        "cache_write": 0.25,
+        "output": 1.2
+      },
+      "long_context_threshold": 272000,
+      "long_input_multiplier": 2.0,
+      "long_output_multiplier": 1.5,
+      "pricing_source": "https://openrouter.ai/openai/gpt-5.6-luna",
+      "identity_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "price_date": "2026-09-20",
+      "version_limit": "Luna extension using the same OpenRouter route and options as Terra; provider-default sampling, reasoning none, strict schema. No model-specific prompt changes.",
+      "transport_provider": "OpenRouter"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "deepseek-json:D": "judge_1",
+  "glm-current:D": "judge_2",
+  "jev:P": "judge_3",
+  "luna:D": "judge_4"
+}

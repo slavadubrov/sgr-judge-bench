@@ -1,0 +1,19 @@
+.env
+.env.*
+!.env.example
+.venv/
+.uv-cache/
+.ruff_cache/
+__pycache__/
+*.pyc
+data/
+runs/
+.cache/
+.DS_Store
+# Full third-party documentation snapshots remain local; publish their URLs/hashes.
+docs/sources/*.txt
+docs/sources/openrouter-models.json
+
+dist/
+
+work/

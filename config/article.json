@@ -1,0 +1,153 @@
+{
+  "verified_at": "2026-09-20",
+  "currency": "USD",
+  "unit": "per_million_tokens",
+  "models": {
+    "jev": {
+      "provider": "OpenRouter / TypeSafe",
+      "model": "typesafe/jev-1.13",
+      "adapter": "jev",
+      "endpoint": "https://openrouter.ai/api/alpha/decisions",
+      "key_env": "OPENROUTER_API_KEY",
+      "profiles": [
+        "P"
+      ],
+      "reasoning_mode": "native_decision",
+      "eligible_nonthinking": true,
+      "output_mode": "native",
+      "options": {},
+      "context_limit": 32000,
+      "max_output": null,
+      "rates": {
+        "input": 0.042,
+        "cached_input": null,
+        "cache_write": null,
+        "output": 0.0
+      },
+      "pricing_source": "https://openrouter.ai/typesafe/jev-1.13",
+      "identity_source": "https://openrouter.ai/docs/api/api-reference/alphadecisions/submit-a-decisions-questions-and-answers-request",
+      "price_date": "2026-09-20",
+      "pricing_note": "OpenRouter model tariff; provider-reported usage.cost retained separately from published-rate estimate.",
+      "version_limit": "Pinned advertised version; returned revision retained. OpenRouter alpha Decisions endpoint, not direct TypeSafe latency.",
+      "alpha": true
+    },
+    "luna": {
+      "provider": "OpenAI",
+      "model": "openai/gpt-5.6-luna",
+      "adapter": "responses",
+      "endpoint": "https://openrouter.ai/api/v1/responses",
+      "key_env": "OPENROUTER_API_KEY",
+      "profiles": [
+        "D"
+      ],
+      "reasoning_mode": "none",
+      "eligible_nonthinking": true,
+      "output_mode": "json_schema_strict",
+      "options": {
+        "reasoning": {
+          "effort": "none"
+        },
+        "store": false,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "context_limit": 1050000,
+      "max_output": 512,
+      "rates": {
+        "input": 0.2,
+        "cached_input": 0.02,
+        "cache_write": 0.25,
+        "output": 1.2
+      },
+      "long_context_threshold": 272000,
+      "long_input_multiplier": 2.0,
+      "long_output_multiplier": 1.5,
+      "pricing_source": "https://openrouter.ai/openai/gpt-5.6-luna",
+      "identity_source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+      "price_date": "2026-09-20",
+      "version_limit": "Luna extension using the same OpenRouter route and options as Terra; provider-default sampling, reasoning none, strict schema. No model-specific prompt changes.",
+      "transport_provider": "OpenRouter"
+    },
+    "terra": {
+      "provider": "OpenAI",
+      "model": "openai/gpt-5.6-terra",
+      "adapter": "responses",
+      "endpoint": "https://openrouter.ai/api/v1/responses",
+      "key_env": "OPENROUTER_API_KEY",
+      "profiles": [
+        "D"
+      ],
+      "reasoning_mode": "none",
+      "eligible_nonthinking": true,
+      "output_mode": "json_schema_strict",
+      "options": {
+        "reasoning": {
+          "effort": "none"
+        },
+        "store": false,
+        "provider": {
+          "only": [
+            "openai"
+          ],
+          "allow_fallbacks": false,
+          "require_parameters": true
+        }
+      },
+      "context_limit": 1050000,
+      "max_output": 512,
+      "rates": {
+        "input": 2,
+        "cached_input": 0.2,
+        "cache_write": 2.5,
+        "output": 12
+      },
+      "long_context_threshold": 272000,
+      "long_input_multiplier": 2.0,
+      "long_output_multiplier": 1.5,
+      "pricing_source": "https://openrouter.ai/openai/gpt-5.6-terra",
+      "identity_source": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+      "price_date": "2026-09-20",
+      "version_limit": "Terra via OpenRouter with OpenAI provider routing and no fallbacks. Returned model retained. Temperature omitted; sampling default is provider-controlled.",
+      "transport_provider": "OpenRouter"
+    },
+    "deepseek-json": {
+      "provider": "DeepSeek",
+      "model": "deepseek-flash",
+      "documented_version": "DeepSeek-V4.1-Flash",
+      "adapter": "chat",
+      "endpoint": "https://api.deepseek.com/chat/completions",
+      "key_env": "DEEPSEEK_API_KEY",
+      "profiles": [
+        "D"
+      ],
+      "reasoning_mode": "disabled",
+      "eligible_nonthinking": true,
+      "output_mode": "json_object",
+      "options": {
+        "thinking": {
+          "type": "disabled"
+        },
+        "temperature": 0
+      },
+      "context_limit": 1000000,
+      "max_output": 512,
+      "rates": {
+        "input": 0.15,
+        "cached_input": 0.003,
+        "cache_write": null,
+        "output": 0.6
+      },
+      "peak_multiplier": 2.0,
+      "peak_schedule": "Monday-Friday UTC [01:00,04:00) and [06:00,10:00), excluding Chinese public holidays",
+      "pricing_source": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "identity_source": "https://api-docs.deepseek.com/quick_start/pricing/",
+      "price_date": "2026-09-20",
+      "version_limit": "Mutable alias; response metadata retained."
+    }
+  }
+}
