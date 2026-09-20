@@ -3,6 +3,7 @@
 import asyncio
 import json
 import os
+import runpy
 import tempfile
 import unittest
 from pathlib import Path
@@ -26,6 +27,22 @@ MODELS = load_models(Path(__file__).resolve().parents[1] / "config/tabfact.json"
 
 
 class SGR(unittest.TestCase):
+    def test_prompt_control_changes_only_system_instructions(self):
+        from judge_bench.sgr import DIRECT_GUIDED
+
+        native = native_case(canaries()[0]["input"], detailed=True)
+        self.assertTrue(native["dimensions"]["label"]["question"].endswith(DIRECT_GUIDED))
+        for name in ("terra", "deepseek-json"):
+            raw = canaries()[0]["input"]
+            direct, schema = stage_request(MODELS[name], raw, "direct")
+            guided, guided_schema = stage_request(MODELS[name], raw, "direct_guided")
+            self.assertEqual(schema, guided_schema)
+            key = "input" if MODELS[name]["adapter"] == "responses" else "messages"
+            self.assertIn("CONJUNCTION", guided[key][0]["content"])
+            self.assertNotEqual(direct[key][0], guided[key][0])
+            guided[key][0] = direct[key][0]
+            self.assertEqual(direct, guided)
+
     def test_projection_and_semantic_guards(self):
         raw = canaries()[0]["input"]
         checks = [{"question": raw["claim"], "columns": ["c0", "c1"]}]
@@ -148,6 +165,7 @@ class SGR(unittest.TestCase):
                 "latency_s": 0.1,
                 "request": body,
                 "raw_output": json.dumps(raw),
+                "model_returned": judge.config["model"],
             }
 
         with tempfile.TemporaryDirectory() as directory, patch.object(HTTPJudge, "request", fake):
@@ -170,7 +188,28 @@ class SGR(unittest.TestCase):
                 )
             )
             self.assertEqual(primary["unique_actual_requests"], 4)
-            self.assertEqual(set(primary["arms"]), {"terra/direct", "terra/sgr", "jev/direct"})
+            self.assertEqual(
+                set(primary["arms"]), {"terra/direct_guided", "terra/sgr", "jev/direct"}
+            )
+            control = asyncio.run(
+                run(
+                    canaries()[:1],
+                    {k: MODELS[k] for k in ("terra", "jev")},
+                    Path(directory) / "control",
+                    1,
+                    include_hybrid=False,
+                    include_prompt_control=True,
+                )
+            )
+            self.assertEqual(control["unique_actual_requests"], 5)
+            self.assertEqual(control["arms"]["terra/direct_guided"]["correct"], 1)
+            self.assertEqual(control["arms"]["terra/direct_guided"]["attributed_requests"], 1)
+            self.assertNotIn("jev/direct_guided", control["arms"])
+            self.assertIn("terra/direct", control["arms"])
+            audit = runpy.run_path(
+                str(Path(__file__).resolve().parents[1] / "scripts/tabfact_audit.py")
+            )["audit"]
+            self.assertEqual(audit(Path(directory) / "control")["requests_reconstructed"], 5)
             blocked = asyncio.run(
                 run(
                     canaries()[:1],

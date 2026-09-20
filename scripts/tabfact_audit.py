@@ -48,7 +48,7 @@ def audit(root):
         case = case_by_id[call["case_id"]]
         config = manifest["models"][call["model"]]
         stage = call["stage"]
-        arm = stage if stage in ("direct", "hybrid") else "sgr"
+        arm = stage if stage in ("direct", "direct_guided", "hybrid") else "sgr"
         record = observed[case["id"], call["model"], arm]
         # Rebuild insertion order: JSONL sorting changes dict order, while enum lists preserve it.
         views = (
@@ -57,7 +57,11 @@ def audit(root):
             else None
         )
         if config["adapter"] == "jev":
-            native = native_case(case["input"], views if stage == "hybrid" else None)
+            native = native_case(
+                case["input"],
+                views if stage == "hybrid" else None,
+                detailed=config.get("detailed_prompt", False),
+            )
             expected = request_body(config, native, "P")
         else:
             expected, schema = stage_request(config, case["input"], stage, views)
@@ -77,7 +81,8 @@ def audit(root):
             stages = [calls[cid] for cid in record["calls"]]
             if not stages or any(c["status"] != "ok" for c in stages):
                 raise ValueError("missing/failed stage")
-            if record["arm"] == "direct":
+            if record["arm"] in ("direct", "direct_guided"):
+                assert len(stages) == 1, "Direct arm must use exactly one call"
                 parsed = stages[0]["parsed"]
                 prediction = parsed["labels"]["label"] if "labels" in parsed else parsed["label"]
             else:

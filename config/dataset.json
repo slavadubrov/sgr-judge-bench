@@ -1,0 +1,15 @@
+{
+  "commit": "2ab782ba42b5808076ac91fec846473aa5315a79",
+  "excluded": "All original development tables/pages and identical normalized table contents; one page/table per selected claim",
+  "excluded_files": [
+    "development-v3.json",
+    "holdout-v3.json"
+  ],
+  "n": 120,
+  "scope": "Unseen by development procedure; model pretraining contamination and fuzzy overlap not ruled out",
+  "seed": 20260925,
+  "selection": "No length, content, task-type, model-output or operator-coverage filtering",
+  "sha256": "e9fdd1348fc643d2ef5f33e5b5edd568d3fc0d6e9e9e690009bbabeef53b1599",
+  "split": "official test table IDs; raw r1/r2 annotations",
+  "strata": "25 per simple label; 35 per complex label"
+}

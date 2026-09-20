@@ -11,6 +11,7 @@ from unittest.mock import patch
 
 from judge_bench.adapters import HTTPJudge
 from judge_bench.demo import build
+from judge_bench.sgr import stage_request
 
 
 class Demo(unittest.TestCase):
@@ -41,22 +42,42 @@ class Demo(unittest.TestCase):
             )
             summary = json.loads((root / "summary.json").read_text())
             pairs = json.loads((root / "jev-comparison.json").read_text())
-            self.assertEqual(summary["unique_actual_requests"], 1596)
+            self.assertEqual(summary["unique_actual_requests"], 1200)
             self.assertEqual(summary["missing_records"], 0)
-            self.assertEqual(len(summary["arms"]), 10)
-            self.assertEqual(summary["arms"]["jev/direct"]["correct"], 108)
-            self.assertEqual(summary["arms"]["luna/sgr"]["correct"], 114)
-            self.assertEqual(summary["arms"]["jev/hybrid"]["correct"], 55)
-            self.assertAlmostEqual(pairs["luna/sgr"]["jev_minus_comparator"], -0.05)
-            self.assertAlmostEqual(pairs["deepseek-json/direct"]["jev_minus_comparator"], 0.05)
-            self.assertEqual(pairs["luna/sgr"]["jev_only_correct"], 4)
-            self.assertEqual(pairs["luna/sgr"]["comparator_only_correct"], 10)
-            self.assertAlmostEqual(pairs["luna/sgr"]["ci95"][0], -13 / 120)
-            self.assertTrue(all(p["ci95"][0] < 0 < p["ci95"][1] for p in pairs.values()))
+            self.assertEqual(len(summary["arms"]), 7)
+            self.assertEqual(summary["arms"]["jev/direct"]["correct"], 110)
+            self.assertEqual(summary["arms"]["luna/sgr"]["correct"], 111)
+            self.assertEqual(summary["arms"]["luna/direct_guided"]["correct"], 102)
+            self.assertNotIn("luna/direct", summary["arms"])
+            self.assertAlmostEqual(pairs["luna/sgr"]["jev_minus_comparator"], -1 / 120)
+            self.assertAlmostEqual(
+                pairs["deepseek-json/direct_guided"]["jev_minus_comparator"], 10 / 120
+            )
+            self.assertNotIn("deepseek-json/direct", pairs)
+            self.assertEqual(pairs["luna/sgr"]["jev_only_correct"], 6)
+            self.assertEqual(pairs["luna/sgr"]["comparator_only_correct"], 7)
+            self.assertGreater(pairs["terra/sgr"]["ci95"][1], 0)
+            prompts = json.loads((root / "prompts.json").read_text())
+            self.assertIn("CONJUNCTION", prompts["direct_guided"])
+            self.assertEqual(set(prompts), {"direct_guided", "plan", "assess", "jev"})
+            for stage in ("direct_guided", "plan"):
+                request, _ = stage_request(
+                    bundle["manifest"]["models"]["luna"], bundle["cases"][0]["input"], stage
+                )
+                self.assertEqual(prompts[stage], request["input"][0]["content"])
+            self.assertTrue(
+                all(
+                    "request_id" not in call and "raw_output" not in call
+                    for call in bundle["calls"]
+                )
+            )
+            self.assertNotIn("short prompt", page)
+            self.assertNotIn("historical", page)
+            self.assertIn("Luna / Direct", page)
             with (root / "predictions.csv").open() as f:
-                self.assertEqual(len(list(csv.DictReader(f))), 1200)
+                self.assertEqual(len(list(csv.DictReader(f))), 840)
             self.assertEqual(page.count('class="case"'), 120)
-            self.assertEqual(page.count(" trace</summary>"), 1200)
+            self.assertEqual(page.count(" trace</summary>"), 840)
             self.assertNotIn("<script src=", page)
             self.assertIn('label for="search"', page)
             HTMLParser().feed(page)

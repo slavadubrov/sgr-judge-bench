@@ -7,13 +7,18 @@ from pathlib import Path
 from .core import read_jsonl
 
 
-def render(root, out, *, introduction="", primary=None):
+def render(root, out, *, introduction="", primary=None, labels=None):
     root, out = Path(root), Path(out)
     out.mkdir(parents=True, exist_ok=True)
     cases = json.loads((root / "cases.json").read_text())
     rows = read_jsonl(root / "records.jsonl")
     summary = json.loads((root / "summary.json").read_text())
+    note = summary["note"]
     esc = html.escape
+    labels = labels or {}
+
+    def label(key):
+        return esc(labels.get(key, key))
 
     def pretty(value):
         return esc(json.dumps(value, ensure_ascii=False, indent=2))
@@ -28,12 +33,12 @@ summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:an
 </style><h1>Groundedness judge benchmark</h1><p>TabFact · recorded September 20, 2026 · all failures count as errors · frozen SGR v2.</p>""",
         introduction,
         "<p>"
-        + esc(summary["note"])
+        + esc(note)
         + "</p><table><tr><th>Model / arm</th><th>Correct</th><th>Valid</th><th>USD / 1,000 (known)</th><th>Unknown cost calls</th><th>Median service latency</th></tr>",
     ]
     for key, s in ((k, summary["arms"][k]) for k in (primary or summary["arms"])):
         parts.append(
-            f"<tr><td>{esc(key)}</td><td>{s['correct']}/{s['n']}</td><td>{s['valid']}/{s['n']}</td><td>${s['known_cost_lower_usd'] * 1000 / s['n']:.3f}–{s['known_cost_upper_usd'] * 1000 / s['n']:.3f}</td><td>{s['unknown_cost_calls']}</td><td>{s['median_service_latency_s']:.2f} s</td></tr>"
+            f"<tr><td>{label(key)}</td><td>{s['correct']}/{s['n']}</td><td>{s['valid']}/{s['n']}</td><td>${s['known_cost_lower_usd'] * 1000 / s['n']:.3f}–{s['known_cost_upper_usd'] * 1000 / s['n']:.3f}</td><td>{s['unknown_cost_calls']}</td><td>{s['median_service_latency_s']:.2f} s</td></tr>"
         )
     parts.append(
         "</table><h2>Cases and intermediate outputs</h2><p>Open any case to inspect its full source and each recorded plan/assessment. All cases are retained; order matches the frozen dataset.</p>"
@@ -63,13 +68,13 @@ summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:an
         for r in records:
             color = "ok" if r["status"] == "ok" and r["prediction"] == c["gold"] else "bad"
             parts.append(
-                f'<tr class="{color}"><td>{esc(r["model"] + "/" + r["arm"])}</td><td>{esc(str(r["prediction"]))}</td><td>{esc(r["status"])}</td></tr>'
+                f'<tr class="{color}"><td>{label(r["model"] + "/" + r["arm"])}</td><td>{esc(str(r["prediction"]))}</td><td>{esc(r["status"])}</td></tr>'
             )
         parts.append("</table>")
         for r in records:
             evidence = {k: r[k] for k in ("checks", "assessment", "error", "calls") if k in r}
             parts.append(
-                f"<details><summary>{esc(r['model'] + '/' + r['arm'])} trace</summary><pre>{pretty(evidence)}</pre></details>"
+                f"<details><summary>{label(r['model'] + '/' + r['arm'])} trace</summary><pre>{pretty(evidence)}</pre></details>"
             )
         parts.append("</details>")
     parts.append("""<script>

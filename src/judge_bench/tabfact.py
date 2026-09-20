@@ -81,7 +81,17 @@ def canaries():
     ]
 
 
-async def run(cases, models, out, budget, *, planner="terra", phase="test", include_hybrid=True):
+async def run(
+    cases,
+    models,
+    out,
+    budget,
+    *,
+    planner="terra",
+    phase="test",
+    include_hybrid=True,
+    include_prompt_control=False,
+):
     root = Path(out)
     if root.exists():
         raise ValueError("Refusing to overwrite a recorded run")
@@ -98,9 +108,18 @@ async def run(cases, models, out, budget, *, planner="terra", phase="test", incl
         (c, name, arm)
         for c in cases
         for name, config in models.items()
-        for arm in ("direct", "hybrid" if config["adapter"] == "jev" else "sgr")
+        for arm in (
+            ("direct", "hybrid") if config["adapter"] == "jev" else ("direct_guided", "sgr")
+        )
         if include_hybrid or arm != "hybrid"
     ]
+    if include_prompt_control:
+        jobs.extend(
+            (c, name, "direct")
+            for c in cases
+            for name, config in models.items()
+            if config["adapter"] != "jev"
+        )
     random.Random(20260925).shuffle(jobs)
     manifest = {
         "started_at": datetime.now(UTC).isoformat(),
@@ -116,6 +135,7 @@ async def run(cases, models, out, budget, *, planner="terra", phase="test", incl
         "repairs": 0,
         "client_location": "Not independently verified in this run",
         "include_hybrid": include_hybrid,
+        "include_prompt_control": include_prompt_control,
         "policy": f"Frozen SGR v2. All failures stay in denominator. Any native Jev hybrid reuses the {planner} plan; attributed cost/latency includes it. No generated Jev findings/citations.",
         "jobs": [{"id": c["id"], "model": n, "arm": a} for c, n, a in jobs],
     }
@@ -189,7 +209,9 @@ async def run(cases, models, out, budget, *, planner="terra", phase="test", incl
                     record["source_views"] = views
                     native = native_case(case["input"], views)
                 elif models[name]["adapter"] == "jev":
-                    native = native_case(case["input"])
+                    native = native_case(
+                        case["input"], detailed=models[name].get("detailed_prompt", False)
+                    )
                 else:
                     native = None
                 if native is not None:
@@ -208,8 +230,8 @@ async def run(cases, models, out, budget, *, planner="terra", phase="test", incl
                     record["prediction"] = (
                         labels["label"] if arm == "direct" else aggregate_native(labels)
                     )
-                elif arm == "direct":
-                    record["prediction"] = (await generated(case, name, "direct", record))["label"]
+                elif arm in ("direct", "direct_guided"):
+                    record["prediction"] = (await generated(case, name, arm, record))["label"]
                 else:
                     checks = (await generated(case, name, "plan", record))["checks"]
                     record["checks"] = checks
@@ -319,8 +341,10 @@ def report(root):
         "paired_comparisons": comparisons,
         "unique_actual_requests": len(calls),
         "missing_records": len(manifest["jobs"]) - len(records),
-        "note": "All failures incorrect; one page/table per case. Paired page bootstrap, 10000 resamples; exploratory unadjusted intervals. Hybrid attributed totals include shared Terra planning; actual requests count it once. Service latency sums requests and excludes queues.",
+        "note": "All failures incorrect; one page/table per case. Paired page bootstrap, 10000 resamples; exploratory unadjusted intervals. Service latency sums requests and excludes queues.",
     }
+    if any(key.endswith("/hybrid") for key in summary):
+        value["note"] += " Hybrid totals include shared planning; actual requests count it once."
     write_json(root / "summary.json", value)
     lines = [
         "# TabFact direct / SGR comparison",
