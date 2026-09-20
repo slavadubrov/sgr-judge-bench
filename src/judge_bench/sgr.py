@@ -216,7 +216,7 @@ def parse_stage(config, raw, schema):
     return value
 
 
-def native_case(raw, views=None):
+def native_case(raw, views=None, *, detailed=False):
     """Jev has typed decisions, no generated plans/findings/citations."""
     native_guide = COMMON.replace(
         "in the finding before reporting the count", "before deciding the count"
@@ -225,7 +225,8 @@ def native_case(raw, views=None):
         dimensions = {
             "label": {
                 "kind": "choice",
-                "question": native_guide + "Return the final label.",
+                "question": native_guide
+                + (DIRECT_GUIDED if detailed else "Return the final label."),
                 "labels": {
                     "ENTAILED": "The entire claim follows from the table and caption.",
                     "REFUTED": "The claim is false according to the table and caption.",

@@ -57,7 +57,11 @@ def audit(root):
             else None
         )
         if config["adapter"] == "jev":
-            native = native_case(case["input"], views if stage == "hybrid" else None)
+            native = native_case(
+                case["input"],
+                views if stage == "hybrid" else None,
+                detailed=config.get("detailed_prompt", False),
+            )
             expected = request_body(config, native, "P")
         else:
             expected, schema = stage_request(config, case["input"], stage, views)

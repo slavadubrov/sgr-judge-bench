@@ -1,0 +1,86 @@
+{
+  "luna/direct_guided": {
+    "jev_minus_comparator": 0.06666666666666667,
+    "ci95": [
+      0.008333333333333333,
+      0.125
+    ],
+    "jev_only_correct": 11,
+    "comparator_only_correct": 3,
+    "comparator_cost_over_jev": [
+      3.517175491792287,
+      3.6765461632686494
+    ],
+    "comparator_median_latency_over_jev": 3.043898884649319
+  },
+  "luna/sgr": {
+    "jev_minus_comparator": -0.008333333333333333,
+    "ci95": [
+      -0.06666666666666667,
+      0.05
+    ],
+    "jev_only_correct": 6,
+    "comparator_only_correct": 7,
+    "comparator_cost_over_jev": [
+      8.941686939570097,
+      9.331844703709605
+    ],
+    "comparator_median_latency_over_jev": 8.41869817408927
+  },
+  "terra/direct_guided": {
+    "jev_minus_comparator": -0.016666666666666666,
+    "ci95": [
+      -0.06666666666666667,
+      0.03333333333333333
+    ],
+    "jev_only_correct": 3,
+    "comparator_only_correct": 5,
+    "comparator_cost_over_jev": [
+      35.1652747889683,
+      36.758981503731924
+    ],
+    "comparator_median_latency_over_jev": 3.09403813466018
+  },
+  "terra/sgr": {
+    "jev_minus_comparator": -0.03333333333333333,
+    "ci95": [
+      -0.08333333333333333,
+      0.008333333333333333
+    ],
+    "jev_only_correct": 2,
+    "comparator_only_correct": 6,
+    "comparator_cost_over_jev": [
+      83.32032807452869,
+      87.5172465932072
+    ],
+    "comparator_median_latency_over_jev": 9.529521952403918
+  },
+  "deepseek-json/direct_guided": {
+    "jev_minus_comparator": 0.08333333333333333,
+    "ci95": [
+      0.016666666666666666,
+      0.15
+    ],
+    "jev_only_correct": 14,
+    "comparator_only_correct": 4,
+    "comparator_cost_over_jev": [
+      1.8279957771159645,
+      1.8279957771159645
+    ],
+    "comparator_median_latency_over_jev": 2.0884085254006286
+  },
+  "deepseek-json/sgr": {
+    "jev_minus_comparator": -0.03333333333333333,
+    "ci95": [
+      -0.09166666666666666,
+      0.025
+    ],
+    "jev_only_correct": 4,
+    "comparator_only_correct": 8,
+    "comparator_cost_over_jev": [
+      3.8811887256556408,
+      3.8811887256556408
+    ],
+    "comparator_median_latency_over_jev": 6.880950420742907
+  }
+}

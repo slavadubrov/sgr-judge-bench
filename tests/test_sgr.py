@@ -28,6 +28,10 @@ MODELS = load_models(Path(__file__).resolve().parents[1] / "config/tabfact.json"
 
 class SGR(unittest.TestCase):
     def test_prompt_control_changes_only_system_instructions(self):
+        from judge_bench.sgr import DIRECT_GUIDED
+
+        native = native_case(canaries()[0]["input"], detailed=True)
+        self.assertTrue(native["dimensions"]["label"]["question"].endswith(DIRECT_GUIDED))
         for name in ("terra", "deepseek-json"):
             raw = canaries()[0]["input"]
             direct, schema = stage_request(MODELS[name], raw, "direct")

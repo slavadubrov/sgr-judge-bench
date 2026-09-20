@@ -14,11 +14,6 @@ def render(root, out, *, introduction="", primary=None, labels=None):
     rows = read_jsonl(root / "records.jsonl")
     summary = json.loads((root / "summary.json").read_text())
     note = summary["note"]
-    if not any(k.endswith("/hybrid") for k in summary["arms"]):
-        note = note.replace(
-            "Hybrid attributed totals include shared Terra planning; actual requests count it once. ",
-            "",
-        )
     esc = html.escape
     labels = labels or {}
 

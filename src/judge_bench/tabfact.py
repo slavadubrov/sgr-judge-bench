@@ -209,7 +209,9 @@ async def run(
                     record["source_views"] = views
                     native = native_case(case["input"], views)
                 elif models[name]["adapter"] == "jev":
-                    native = native_case(case["input"])
+                    native = native_case(
+                        case["input"], detailed=models[name].get("detailed_prompt", False)
+                    )
                 else:
                     native = None
                 if native is not None:
@@ -339,8 +341,10 @@ def report(root):
         "paired_comparisons": comparisons,
         "unique_actual_requests": len(calls),
         "missing_records": len(manifest["jobs"]) - len(records),
-        "note": "All failures incorrect; one page/table per case. Paired page bootstrap, 10000 resamples; exploratory unadjusted intervals. Hybrid attributed totals include shared Terra planning; actual requests count it once. Service latency sums requests and excludes queues.",
+        "note": "All failures incorrect; one page/table per case. Paired page bootstrap, 10000 resamples; exploratory unadjusted intervals. Service latency sums requests and excludes queues.",
     }
+    if any(key.endswith("/hybrid") for key in summary):
+        value["note"] += " Hybrid totals include shared planning; actual requests count it once."
     write_json(root / "summary.json", value)
     lines = [
         "# TabFact direct / SGR comparison",

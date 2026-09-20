@@ -2,7 +2,6 @@
 
 import csv
 import gzip
-import hashlib
 import json
 import tempfile
 import unittest
@@ -43,25 +42,25 @@ class Demo(unittest.TestCase):
             )
             summary = json.loads((root / "summary.json").read_text())
             pairs = json.loads((root / "jev-comparison.json").read_text())
-            self.assertEqual(summary["unique_actual_requests"], 1560)
+            self.assertEqual(summary["unique_actual_requests"], 1200)
             self.assertEqual(summary["missing_records"], 0)
-            self.assertEqual(len(summary["arms"]), 10)
-            self.assertEqual(summary["arms"]["jev/direct"]["correct"], 107)
+            self.assertEqual(len(summary["arms"]), 7)
+            self.assertEqual(summary["arms"]["jev/direct"]["correct"], 110)
             self.assertEqual(summary["arms"]["luna/sgr"]["correct"], 111)
             self.assertEqual(summary["arms"]["luna/direct_guided"]["correct"], 102)
-            self.assertEqual(summary["arms"]["luna/direct"]["correct"], 105)
-            self.assertAlmostEqual(pairs["luna/sgr"]["jev_minus_comparator"], -4 / 120)
+            self.assertNotIn("luna/direct", summary["arms"])
+            self.assertAlmostEqual(pairs["luna/sgr"]["jev_minus_comparator"], -1 / 120)
             self.assertAlmostEqual(
-                pairs["deepseek-json/direct_guided"]["jev_minus_comparator"], 7 / 120
+                pairs["deepseek-json/direct_guided"]["jev_minus_comparator"], 10 / 120
             )
             self.assertNotIn("deepseek-json/direct", pairs)
-            self.assertEqual(pairs["luna/sgr"]["jev_only_correct"], 5)
-            self.assertEqual(pairs["luna/sgr"]["comparator_only_correct"], 9)
-            self.assertLess(pairs["terra/sgr"]["ci95"][1], 0)
+            self.assertEqual(pairs["luna/sgr"]["jev_only_correct"], 6)
+            self.assertEqual(pairs["luna/sgr"]["comparator_only_correct"], 7)
+            self.assertGreater(pairs["terra/sgr"]["ci95"][1], 0)
             prompts = json.loads((root / "prompts.json").read_text())
             self.assertIn("CONJUNCTION", prompts["direct_guided"])
-            self.assertEqual(set(prompts), {"direct", "direct_guided", "plan", "assess"})
-            for stage in ("direct", "direct_guided", "plan"):
+            self.assertEqual(set(prompts), {"direct_guided", "plan", "assess", "jev"})
+            for stage in ("direct_guided", "plan"):
                 request, _ = stage_request(
                     bundle["manifest"]["models"]["luna"], bundle["cases"][0]["input"], stage
                 )
@@ -72,17 +71,13 @@ class Demo(unittest.TestCase):
                     for call in bundle["calls"]
                 )
             )
-            historical = Path(__file__).resolve().parents[1] / "results/historical-article.json.gz"
-            self.assertEqual(
-                hashlib.sha256(historical.read_bytes()).hexdigest(),
-                provenance["historical_replay_sha256"],
-            )
-            self.assertIn("Luna / Direct (short prompt)", page)
+            self.assertNotIn("short prompt", page)
+            self.assertNotIn("historical", page)
             self.assertIn("Luna / Direct", page)
             with (root / "predictions.csv").open() as f:
-                self.assertEqual(len(list(csv.DictReader(f))), 1200)
+                self.assertEqual(len(list(csv.DictReader(f))), 840)
             self.assertEqual(page.count('class="case"'), 120)
-            self.assertEqual(page.count(" trace</summary>"), 1200)
+            self.assertEqual(page.count(" trace</summary>"), 840)
             self.assertNotIn("<script src=", page)
             self.assertIn('label for="search"', page)
             HTMLParser().feed(page)

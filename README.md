@@ -17,11 +17,11 @@ The packaged replay works outside the checkout and recomputes scores with the li
 
 ## Recorded comparison
 
-September 20, 2026. All arms below ran together in a shuffled run on the same already observed cohort: 120 distinct tables/pages, 60 ENTAILED and 60 REFUTED. Failures count as incorrect.
+September 20, 2026. The LLM arms were interleaved; Jev ran separately on the same frozen cohort: 120 distinct tables/pages, 60 ENTAILED and 60 REFUTED. Failures count as incorrect.
 
 | Model | Approach | Correct / 120 | Valid / 120 | Estimated USD / 1,000 | Median service latency |
 |---|---|---:|---:|---:|---:|
-| Jev 1.13 | Native decision | 107 | 120 | $0.083 | 0.34 s |
+| Jev 1.13 | Native decision | 110 | 120 | $0.093 | 0.35 s |
 | GPT-5.6 Luna | Direct | 102 | 120 | $0.326–0.340 | 1.08 s |
 | GPT-5.6 Luna | SGR | **111** | 118 | $0.828–0.864 | 2.98 s |
 | GPT-5.6 Terra | Direct | 112 | 120 | $3.256–3.404 | 1.10 s |
@@ -29,11 +29,11 @@ September 20, 2026. All arms below ran together in a shuffled run on the same al
 | DeepSeek Flash | Direct | 100 | 120 | $0.169 | 0.74 s |
 | DeepSeek Flash | SGR | **114** | 118 | $0.359 | 2.44 s |
 
-**Direct uses the detailed prompt throughout this primary comparison.** It requests decomposition, evidence checks and a coverage audit, then returns only a final label. The original shorter prompt is retained as a diagnostic, not used as the primary baseline.
+**Direct uses the detailed prompt throughout this primary comparison.** It requests decomposition, evidence checks and a coverage audit, then returns only a final label.
 
 SGR gains 9 correct answers for Luna, 2 for Terra and 14 for DeepSeek. Paired 95% bootstrap accuracy gains are +7.50 pp [0.00, +15.00], +1.67 pp [−2.50, +5.83] and +11.67 pp [+5.00, +18.33], respectively. DeepSeek shows the clearest advantage. Luna's exact paired test gives p=0.0784; Terra is inconclusive. The observed score range narrows from 12 to 3 cases, but this does not establish a general relationship between model capability and SGR gains. These exploratory intervals are unadjusted for multiple comparisons.
 
-Jev is cheaper and faster than all primary LLM arms. It scores 5 and 7 cases above Luna and DeepSeek Direct, and 5 below Terra Direct. Against SGR, Jev scores 4 fewer than Luna and 7 fewer than Terra or DeepSeek. Terra SGR's paired advantage over Jev excludes zero; other primary Jev intervals include or touch zero. This is not evidence of equivalence or noninferiority, and no replacement cascade was validated. The demo reports every paired Jev contrast and cost/latency ratio.
+Jev is cheaper and faster than all primary LLM arms. It scores 8 and 10 cases above Luna and DeepSeek Direct, and 2 below Terra Direct. Against SGR, Jev scores 1 fewer than Luna and 4 fewer than Terra or DeepSeek. All paired SGR-versus-Jev accuracy intervals include zero. This is not evidence of equivalence or noninferiority, and no replacement cascade was validated. The demo reports every paired Jev contrast and cost/latency ratio.
 
 Costs use recorded usage and dated tariffs, not invoices. Cache-accounting uncertainty produces ranges; all calls have bounded costs. Cache usage differs between arms. Service latency sums required calls and excludes queues. Ratios describe this run, not guaranteed deployment performance.
 
@@ -100,7 +100,7 @@ Direct means the detailed-prompt baseline. Every answer in this table is a valid
 | DeepSeek Flash / Direct | REFUTED | ENTAILED | **REFUTED** |
 | DeepSeek Flash / SGR | **ENTAILED** | **REFUTED** | **REFUTED** |
 
-Across **all 120 cases**, Jev's 89.2% sits between Luna/DeepSeek Direct (85.0%/83.3%) and Terra Direct (93.3%). It trails the SGR arms by 4–7 correct cases, or 3.3–5.8 percentage points, while costing less and responding faster. That is the observed tradeoff on this cohort; the examples do not establish equivalence or a generally negligible quality gap. [All recorded predictions](results/prompt-control/predictions.csv) remain available, including the counterexamples.
+Across **all 120 cases**, Jev's 91.7% sits between Luna/DeepSeek Direct (85.0%/83.3%) and Terra Direct (93.3%). It trails the SGR arms by 1–4 correct cases, or 0.8–3.3 percentage points, while costing less and responding faster. That is the observed tradeoff on this cohort; the examples do not establish equivalence or a generally negligible quality gap. [All recorded predictions](results/current/predictions.csv) remain available, including the counterexamples.
 
 ## Direct structured output versus SGR
 
@@ -117,35 +117,23 @@ The instructions are comparable, not identical. SGR additionally generates inter
 
 Luna and Terra use provider-enforced strict JSON Schema with reasoning disabled. DeepSeek uses JSON object mode, thinking disabled, and local validation. Five SGR pipelines fail on incomplete coverage or unresolved predicates; they remain incorrect. Schema validation cannot prove that the plan preserves the claim or that its findings are true.
 
-Native Jev receives the same full claim/table through its Choice decision API; probability argmax selects the label. It uses the common table rules and does not generate an SGR plan or findings. Its prompt and native interface are a separate practical baseline, not part of the within-model prompt control.
-
-## Preserved controls and earlier evidence
-
-The current replay retains **Direct (short prompt)**: Luna 105/120, Terra 113/120 and DeepSeek 99/120. All 360 control predictions remain in the case browser and CSV. [Control results and paired tests](results/prompt-control/README.md) compare both prompts. Raw identifiers remain unchanged: `direct_guided` is displayed as Direct, while `direct` is displayed as Direct (short prompt) for LLMs. Jev's `direct` identifier means its native decision.
-
-Earlier results are preserved separately, without mixing time blocks into the primary table:
-
-- [Initial TabFact comparison](results/tabfact/README.md) and [Luna extension](results/tabfact-luna/README.md).
-- [Historical compact replay](results/historical-article.json.gz), preserving all scores and GLM/Jev-hybrid traces; provider request identifiers are omitted with the transformation recorded in provenance. GLM direct/SGR scored 115/26, with 93 SGR format failures. The Terra-planned Jev hybrid scored 55/120 with 58 valid; bypassing its coverage gate gave 112/120 only as a post-hoc diagnostic.
-- [Historical RAGTruth comparison](results/pilot/README.md), covering 900 answers from 150 source groups. Its one-call JSON judges were not SGR.
-
-TabFact includes counting and arithmetic that the recorded Jev compiler documentation cautions against. These are table-reasoning results, not general RAG groundedness scores.
+Native Jev receives the same full claim/table through its Choice decision API; probability argmax selects the label. It receives the same detailed decomposition, evidence-checking and coverage instructions as Direct, alongside the common table rules. It does not generate an SGR plan or findings. Its prompt and native interface are a separate practical baseline, not part of the within-model prompt control.
 
 ## Evidence and reproducibility
 
-The original sample was frozen from official TabFact test tables at upstream commit `2ab782ba42b5808076ac91fec846473aa5315a79`, excluding 168 previously observed cases/pages/tables. It contains 50 simple and 70 complex claims. Gold labels are unchanged, including suspected ambiguities. The cohort is now observed, and absence from model pretraining is not established. The detailed-prompt comparison is exploratory and uses one fresh shuffled run, without retries, repairs or per-model prompt tuning.
+The original sample was frozen from official TabFact test tables at upstream commit `2ab782ba42b5808076ac91fec846473aa5315a79`, excluding 168 previously observed cases/pages/tables. It contains 50 simple and 70 complex claims. Gold labels are unchanged, including suspected ambiguities. The cohort is now observed, and absence from model pretraining is not established. The detailed-prompt comparison is exploratory and uses interleaved LLM arms and a separate Jev execution block, without retries, repairs or per-model prompt tuning. Latency comparisons are descriptive; execution time and provider routes are not controlled.
 
-- [Current comparison protocol](docs/prompt-control.md) and [original sampling/workflow protocol](docs/tabfact-sgr.md).
-- `src/judge_bench/article.json.gz`: current compact replay of 1,200 evaluations and 1,560 calls, including the short-prompt controls. Predictions, findings, failures, model options, dated tariffs, usage, service timings and frozen system prompts are included.
-- `provenance.json`: source hashes, dataset provenance and the successful reconstruction audit for all 1,560 requests and 1,200 verdicts. Raw HTTP, request identifiers and duplicate projections are omitted; full current HTTP evidence remains private.
-- The [v0.1.0 evidence archive](https://github.com/slavadubrov/sgr-judge-bench/releases/download/v0.1.0/evidence.tar.gz) belongs to the **historical** experiment, not the current comparison.
+- [Dataset and comparison protocol](docs/tabfact-sgr.md).
+- `src/judge_bench/article.json.gz`: current compact replay of 840 evaluations and 1,200 calls across the seven displayed configurations. Predictions, findings, failures, model options, dated tariffs, usage, service timings and frozen system prompts are included.
+- `provenance.json`: source hashes, dataset provenance and the successful source-run reconstruction audit and exported evaluation/call counts. Raw HTTP, request identifiers and duplicate projections are omitted; full current HTTP evidence remains private.
 
-With the current private raw run available, audit and rebuild its replay:
+With the private LLM and Jev execution blocks available, audit and rebuild the replay:
 
 ```sh
 uv run python scripts/tabfact_audit.py "$PRIVATE_RUN_DIR"
+uv run python scripts/tabfact_audit.py "$PRIVATE_JEV_RUN_DIR"
 uv run python scripts/tabfact_bundle.py "$PRIVATE_RUN_DIR" work/rebuilt.json.gz \
-  --previous results/historical-article.json.gz
+  --jev-run "$PRIVATE_JEV_RUN_DIR"
 ```
 
 The source is [TabFact / Table-Fact-Checking](https://github.com/wenhuchen/Table-Fact-Checking). The bundled excerpt retains source URLs and the upstream [MIT license](src/judge_bench/TABFACT_LICENSE.txt). Benchmark code is MIT licensed separately.
@@ -162,7 +150,7 @@ uv run judge-bench --models config/article.json tabfact-run --live \
   --out "$PRIVATE_RUN_DIR" --budget-usd 5
 ```
 
-The default LLM arms are detailed Direct and SGR. Add `--include-short-direct` to retain the original prompt as an extra control; `--include-prompt-control` remains an alias for reproducing the recorded three-arm run. Omit `--exclude-hybrid` only to intentionally include the historical Terra-planned hybrid. These commands repeat the observed cohort, not a new holdout.
+The default LLM arms are detailed Direct and SGR. These commands repeat the observed cohort, not a new holdout.
 
 ## Development
 

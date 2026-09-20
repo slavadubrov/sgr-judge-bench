@@ -29,7 +29,8 @@
       "price_date": "2026-09-20",
       "pricing_note": "OpenRouter model tariff; provider-reported usage.cost retained separately from published-rate estimate.",
       "version_limit": "Pinned advertised version; returned revision retained. OpenRouter alpha Decisions endpoint, not direct TypeSafe latency.",
-      "alpha": true
+      "alpha": true,
+      "detailed_prompt": true
     },
     "luna": {
       "provider": "OpenAI",
