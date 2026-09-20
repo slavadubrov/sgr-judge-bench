@@ -37,6 +37,71 @@ Jev is cheaper and faster than all primary LLM arms. It scores 5 and 7 cases abo
 
 Costs use recorded usage and dated tariffs, not invoices. Cache-accounting uncertainty produces ranges; all calls have bounded costs. Cache usage differs between arms. Service latency sums required calls and excludes queues. Ratios describe this run, not guaranteed deployment performance.
 
+## Three examples from the evaluated dataset
+
+Each TabFact item contains a table, a caption and a claim. The judge must return ENTAILED or REFUTED using that source alone. These examples were selected after evaluation to illustrate two Jev successes and one failure; they are not a representative subsample. Claims and cell values below come from the frozen replay. Tables show only the relevant rows and columns; models received the full tables. Search the case IDs in the demo to inspect every original cell and SGR trace.
+
+### A. Comparing participation across tournaments
+
+Caption: **1993 in brazilian football**. Case: `complex:2-15009679-7.html.csv:2`.
+
+> santos did not qualify for as many tournaments as cruzeiro did
+
+The two relevant team rows are transposed here for readability:
+
+| Tournament | santos | cruzeiro |
+|---|---|---|
+| copa libertadores 1993 | did not qualify | did not qualify |
+| supercopa sudamericana 1993 | round of 16 | quarterfinals |
+| copa conmebol 1993 | did not qualify | did not qualify |
+| recopa sudamericana 1993 | n / a | runner - up |
+| intercontinental cup 1993 | n / a | n / a |
+
+Santos participated in one listed tournament and Cruzeiro in two. Gold: **ENTAILED**. Jev, Terra Direct and all three SGR arms are correct; Luna Direct and DeepSeek Direct return REFUTED.
+
+### B. Preserving both constraints on the matching row
+
+Caption: **vcu rams men 's basketball**. Case: `simple:2-14609295-5.html.csv:7`.
+
+> l 72 - 86 results has a seed less than 12 and a year thats larger than 1996
+
+| year | seed | results |
+|---|---|---|
+| 1980 | 12 | l 72 - 86 |
+
+The matching row has seed 12, not less than 12, and year 1980, not later than 1996. Gold: **REFUTED**. Jev agrees with Terra Direct and all SGR arms; Luna Direct and DeepSeek Direct incorrectly accept the claim.
+
+### C. A tie that Jev gets wrong
+
+Caption: **1992 open championship**. Case: `complex:2-18122130-4.html.csv:6`.
+
+> ian woosnam placed higher than craig parry and gordon brand , jnr
+
+| place | player | score |
+|---|---|---|
+| t3 | gordon brand , jnr | 65 |
+| t3 | ian woosnam | 65 |
+| t9 | craig parry | 67 |
+
+Woosnam ranks above Parry but ties Brand. Gold: **REFUTED**. Jev returns ENTAILED; every Direct and SGR LLM arm correctly rejects the claim. This illustrates a Jev error, without attributing an unobserved reasoning process to the native decision.
+
+### Recorded answers
+
+Direct means the detailed-prompt baseline. Every answer in this table is a valid recorded prediction; bold marks agreement with the unchanged dataset label.
+
+| Model / approach | A: tournaments | B: row constraints | C: tied ranking |
+|---|---|---|---|
+| Dataset label | ENTAILED | REFUTED | REFUTED |
+| Jev / Native | **ENTAILED** | **REFUTED** | ENTAILED |
+| Luna / Direct | REFUTED | ENTAILED | **REFUTED** |
+| Luna / SGR | **ENTAILED** | **REFUTED** | **REFUTED** |
+| Terra / Direct | **ENTAILED** | **REFUTED** | **REFUTED** |
+| Terra / SGR | **ENTAILED** | **REFUTED** | **REFUTED** |
+| DeepSeek Flash / Direct | REFUTED | ENTAILED | **REFUTED** |
+| DeepSeek Flash / SGR | **ENTAILED** | **REFUTED** | **REFUTED** |
+
+Across **all 120 cases**, Jev's 89.2% sits between Luna/DeepSeek Direct (85.0%/83.3%) and Terra Direct (93.3%). It trails the SGR arms by 4–7 correct cases, or 3.3–5.8 percentage points, while costing less and responding faster. That is the observed tradeoff on this cohort; the examples do not establish equivalence or a generally negligible quality gap. [All recorded predictions](results/prompt-control/predictions.csv) remain available, including the counterexamples.
+
 ## Direct structured output versus SGR
 
 Both approaches share table interpretation rules for counts, comparisons, negation, ties, units and scope. Both receive detailed procedural instructions. [The frozen prompts](src/judge_bench/sgr.py) are also inspectable inside the demo and exported as `prompts.json`.
