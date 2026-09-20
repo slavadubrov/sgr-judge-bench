@@ -87,6 +87,23 @@ coverage_complete must be false if a condition is missing; list missing conditio
 The application aggregates the predicate statuses; do not return a global verdict.
 """
 
+DIRECT_GUIDED = """Before deciding, decompose the claim into a short checklist of factual
+predicates whose CONJUNCTION is equivalent to the entire claim. Keep OR/negation
+within a predicate when splitting it would change the logic. Each predicate asks
+a concrete question. Identify every source column needed to answer it, including
+entity/row identification columns. One check is fine for a simple lookup. Never
+invent an intermediate fact, answer, or source constant.
+Evaluate each predicate against the supplied table and caption. Determine the
+factual finding and the exact cells supporting it. Evidence must justify the
+complete predicate, including scope and all filters. An absent entity requires
+checking the searched population. Do not declare success from a partial match.
+For counts, enumerate the matching rows or cells before deciding the count.
+Audit whether the checklist covers the entire original claim, preserving every
+condition. If a condition is missing or unresolved, inspect the source again.
+Return ENTAILED only if every predicate is supported; return REFUTED if the claim
+is false. Return only the final label, without the checklist, findings or citations.
+"""
+
 
 def plan_schema(raw):
     return obj(
@@ -141,9 +158,10 @@ def aggregate(raw, checks, assessment):
 
 def stage_request(config, raw, stage, views=None):
     state = {"source": indexed(raw)}
-    if stage == "direct":
+    if stage in ("direct", "direct_guided"):
         schema = obj(label={"type": "string", "enum": ["ENTAILED", "REFUTED"]})
-        prompt, limit = "Return the final label.", 7168
+        prompt = DIRECT_GUIDED if stage == "direct_guided" else "Return the final label."
+        limit = 7168
     elif stage == "plan":
         schema = obj(checks=array(plan_schema(raw), 8))
         prompt, limit = PLAN_GUIDE, 3072

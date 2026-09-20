@@ -1,0 +1,73 @@
+{
+  "audit": {
+    "case_hash_verified": true,
+    "evaluations_replayed": 1200,
+    "requests_reconstructed": 1560,
+    "returned_models": {
+      "deepseek-json": {
+        "deepseek-flash": 480
+      },
+      "jev": {
+        "typesafe/jev-1.13-20260917": 120
+      },
+      "luna": {
+        "openai/gpt-5.6-luna": 480
+      },
+      "terra": {
+        "openai/gpt-5.6-terra": 480
+      }
+    },
+    "returned_providers": {
+      "deepseek-json": {
+        "None": 480
+      },
+      "jev": {
+        "TypeSafe": 120
+      },
+      "luna": {
+        "None": 480
+      },
+      "terra": {
+        "None": 480
+      }
+    },
+    "source_snapshot_hash_verified": true,
+    "status": "PASS",
+    "transport_statuses": {
+      "ok": 1560
+    }
+  },
+  "case_sha256": "e9fdd1348fc643d2ef5f33e5b5edd568d3fc0d6e9e9e690009bbabeef53b1599",
+  "export_files_sha256": {
+    "predictions.csv": "b50512082b8495ea10773c6e272d869c4226b9261fec638840744ec966f94802",
+    "summary.json": "2afa6155bc4193db01fd689ed9398bee5cfd377959d506db8553bea55a14a1ab"
+  },
+  "inference_code_hash": "f4e120d1a531bea8981403ac1a6a3ce37a34f726dbf9c56e263e2ec046efd5fa",
+  "raw_files_sha256": {
+    "audit.json": "d55389b59dc1a8821a5c8cd1b2e3516fa961d28aa962d8dce9656e55929a7f5e",
+    "calls.jsonl": "b287d49cd279c71be500c179ba48e29082244c694c5cb1bbf3e27490737c8c60",
+    "cases.json": "6c0b0e94c2e80c7408e7dc2367f5a43690a8a5713264bf321dd7f0d920d8cec4",
+    "manifest.json": "b5b2ffa5dc2693e9f3fb211966985edd7c7a4389212860448950c2da26d5bc82",
+    "records.jsonl": "0967b90ca69ac14f75e83403d765ab62d5ee288d45fe2d1a8f6107586d07cd7a",
+    "summary.json": "2afa6155bc4193db01fd689ed9398bee5cfd377959d506db8553bea55a14a1ab"
+  },
+  "source_files_sha256": {
+    "__init__.py": "b730065616cdceefb35bf3aa5334baeb88683c7d02109117e051d51450cf2415",
+    "adapters.py": "9ea057c3b3d37efb9519c2bd7df8c23be7d8652d7e52fa9478280982fb54a24a",
+    "cascades.py": "7080e9c5fd1cff519c61ff84bf8ab17b8e172d19a9eb7db5705a803d870e2a71",
+    "cli.py": "f8ba2b1f321dadb18c548a27d3a8910e9ce320aba725f3be6808841266ab02e9",
+    "core.py": "c3122425dc3541172a0fe1fccfb63d39d2671c44ad416602d56518b1371343c4",
+    "datasets.py": "13badd6fa5a95640af7cabcfe11e7c52cce348fe27a2781db5b5283aea246336",
+    "demo.py": "9e4d8e6f70c3637242523857bc5e86e2f26326adb6ec1703ce0b7b77b0190528",
+    "experiment.py": "f3793ec43a169acf8be3023751adb58e270e891533ea2694ef00e62e6b36ad38",
+    "metrics.py": "a9c4cfe3e0941eac7ef8dd93e93bcccc5da198735b634fdd8f3ef7ca73ab90f0",
+    "report.py": "e19c64e0f42f39c04516c0abdb501a282ffbc6deb9cf9b89a33663fc180d349d",
+    "review.py": "5dc9bd21e1aadb3fae10fa6e7cd8e91425952f739697101d90908908b890ff83",
+    "runner.py": "be5d148b9116934433c6bc8956710adf2cf6ece6a1e46bcf7bb45a2db27bbebc",
+    "sgr.py": "1cccda81b554b6ae3cf6023eec1a158a754d8204c8c6f002d225d538cb54a23d",
+    "tabfact.py": "c4adf3497d174e5e97364f499bcf4c339b47ad4a8d112e4eb732bef4bc77a9a1",
+    "tabfact_data.py": "7570e827589a645a647421a1bc294a2336e418906e0cc98a8bd247a89dcb2de1",
+    "uncertainty.py": "03640541cb975d2fc5fae591d566489b9f66946da6787164388a00788f41b0c8"
+  },
+  "transformations": "Summary copied unchanged. CSV contains case IDs, model, arm, gold, prediction and status; failed predictions are empty. Raw responses, provider request identifiers and administrative metadata omitted. Original evidence retained privately. Cases are identical to the packaged article cohort. No predictions or scores changed. CSV line endings normalized to LF; field values unchanged."
+}

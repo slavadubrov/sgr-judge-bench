@@ -2,6 +2,7 @@
 
 import csv
 import gzip
+import hashlib
 import json
 import tempfile
 import unittest
@@ -11,6 +12,7 @@ from unittest.mock import patch
 
 from judge_bench.adapters import HTTPJudge
 from judge_bench.demo import build
+from judge_bench.sgr import stage_request
 
 
 class Demo(unittest.TestCase):
@@ -41,18 +43,42 @@ class Demo(unittest.TestCase):
             )
             summary = json.loads((root / "summary.json").read_text())
             pairs = json.loads((root / "jev-comparison.json").read_text())
-            self.assertEqual(summary["unique_actual_requests"], 1596)
+            self.assertEqual(summary["unique_actual_requests"], 1560)
             self.assertEqual(summary["missing_records"], 0)
             self.assertEqual(len(summary["arms"]), 10)
-            self.assertEqual(summary["arms"]["jev/direct"]["correct"], 108)
-            self.assertEqual(summary["arms"]["luna/sgr"]["correct"], 114)
-            self.assertEqual(summary["arms"]["jev/hybrid"]["correct"], 55)
-            self.assertAlmostEqual(pairs["luna/sgr"]["jev_minus_comparator"], -0.05)
-            self.assertAlmostEqual(pairs["deepseek-json/direct"]["jev_minus_comparator"], 0.05)
-            self.assertEqual(pairs["luna/sgr"]["jev_only_correct"], 4)
-            self.assertEqual(pairs["luna/sgr"]["comparator_only_correct"], 10)
-            self.assertAlmostEqual(pairs["luna/sgr"]["ci95"][0], -13 / 120)
-            self.assertTrue(all(p["ci95"][0] < 0 < p["ci95"][1] for p in pairs.values()))
+            self.assertEqual(summary["arms"]["jev/direct"]["correct"], 107)
+            self.assertEqual(summary["arms"]["luna/sgr"]["correct"], 111)
+            self.assertEqual(summary["arms"]["luna/direct_guided"]["correct"], 102)
+            self.assertEqual(summary["arms"]["luna/direct"]["correct"], 105)
+            self.assertAlmostEqual(pairs["luna/sgr"]["jev_minus_comparator"], -4 / 120)
+            self.assertAlmostEqual(
+                pairs["deepseek-json/direct_guided"]["jev_minus_comparator"], 7 / 120
+            )
+            self.assertNotIn("deepseek-json/direct", pairs)
+            self.assertEqual(pairs["luna/sgr"]["jev_only_correct"], 5)
+            self.assertEqual(pairs["luna/sgr"]["comparator_only_correct"], 9)
+            self.assertLess(pairs["terra/sgr"]["ci95"][1], 0)
+            prompts = json.loads((root / "prompts.json").read_text())
+            self.assertIn("CONJUNCTION", prompts["direct_guided"])
+            self.assertEqual(set(prompts), {"direct", "direct_guided", "plan", "assess"})
+            for stage in ("direct", "direct_guided", "plan"):
+                request, _ = stage_request(
+                    bundle["manifest"]["models"]["luna"], bundle["cases"][0]["input"], stage
+                )
+                self.assertEqual(prompts[stage], request["input"][0]["content"])
+            self.assertTrue(
+                all(
+                    "request_id" not in call and "raw_output" not in call
+                    for call in bundle["calls"]
+                )
+            )
+            historical = Path(__file__).resolve().parents[1] / "results/historical-article.json.gz"
+            self.assertEqual(
+                hashlib.sha256(historical.read_bytes()).hexdigest(),
+                provenance["historical_replay_sha256"],
+            )
+            self.assertIn("Luna / Direct (short prompt)", page)
+            self.assertIn("Luna / Direct", page)
             with (root / "predictions.csv").open() as f:
                 self.assertEqual(len(list(csv.DictReader(f))), 1200)
             self.assertEqual(page.count('class="case"'), 120)

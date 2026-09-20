@@ -1,5 +1,9 @@
 # TabFact SGR protocol
 
+This document records the original experiment. The [current comparison](prompt-control.md)
+uses detailed Direct as the primary baseline and preserves the original shorter
+prompt as a diagnostic. Historical results below retain their original meanings.
+
 The SGR v2 workflow was frozen before the September 20, 2026 evaluation. The initial run compared Terra, DeepSeek Flash, GLM Flash and native Jev. Luna was added afterward on the same cohort with identical prompts and workflow; this extension is exploratory, not a new holdout.
 
 ## Scope

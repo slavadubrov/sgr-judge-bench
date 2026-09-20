@@ -27,4 +27,4 @@ ignore = ["E501"]
 packages = ["src/judge_bench"]
 
 [tool.hatch.build.targets.sdist]
-include = ["src", "tests", "README.md", "LICENSE", "pyproject.toml", "uv.lock", "config", "docs/methodology.md", "docs/tabfact-sgr.md", "scripts"]
+include = ["src", "tests", "README.md", "LICENSE", "pyproject.toml", "uv.lock", "config", "docs/methodology.md", "docs/tabfact-sgr.md", "docs/prompt-control.md", "results/historical-article.json.gz", "results/prompt-control", "scripts"]

@@ -90,6 +90,13 @@ def main():
     p.add_argument("--budget-usd", type=float, required=True)
     p.add_argument("--planner", default="terra")
     p.add_argument(
+        "--include-short-direct",
+        "--include-prompt-control",
+        dest="include_prompt_control",
+        action="store_true",
+        help="Also run the original shorter direct prompt as a diagnostic control",
+    )
+    p.add_argument(
         "--exclude-hybrid", action="store_true", help="Native Jev plus direct/SGR LLM arms only"
     )
     p = sub.add_parser("tabfact-report", help="Offline replay of recorded table results")
@@ -133,6 +140,7 @@ def main():
                 args.budget_usd,
                 planner=args.planner,
                 include_hybrid=not args.exclude_hybrid,
+                include_prompt_control=args.include_prompt_control,
                 phase="preflight" if args.canaries else "test",
             )
         )
