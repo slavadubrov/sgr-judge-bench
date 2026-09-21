@@ -77,7 +77,10 @@ class Demo(unittest.TestCase):
             with (root / "predictions.csv").open() as f:
                 self.assertEqual(len(list(csv.DictReader(f))), 840)
             self.assertEqual(page.count('class="case"'), 120)
-            self.assertEqual(page.count(" trace</summary>"), 840)
+            self.assertEqual(page.count(" trace</summary>"), 480)
+            self.assertNotIn("SGR", page)
+            self.assertIn("Jev versus one-call structured-output LLM judges", page)
+            self.assertEqual(page.count("Jev / Native decision trace</summary>"), 120)
             self.assertNotIn("<script src=", page)
             self.assertIn('label for="search"', page)
             HTMLParser().feed(page)

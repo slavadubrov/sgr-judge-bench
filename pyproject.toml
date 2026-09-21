@@ -1,7 +1,7 @@
 [project]
 name = "jev-judge-bench"
 version = "0.1.0"
-description = "Native Jev versus direct structured output and schema-guided reasoning"
+description = "Jev versus one-call structured-output LLM judges"
 requires-python = ">=3.11"
 dependencies = ["httpx>=0.28,<1", "jsonschema>=4.23,<5", "numpy>=2,<3", "scipy>=1.14,<2", "matplotlib>=3.9,<4", "python-dotenv>=1,<2"]
 

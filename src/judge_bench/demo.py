@@ -11,7 +11,7 @@ from .core import write_json, write_jsonl
 from .review import render
 from .tabfact import report
 
-PRIMARY = (
+RECORDED = (
     "jev/direct",
     "luna/direct_guided",
     "luna/sgr",
@@ -20,6 +20,8 @@ PRIMARY = (
     "deepseek-json/direct_guided",
     "deepseek-json/sgr",
 )
+
+PRIMARY = tuple(key for key in RECORDED if not key.endswith("/sgr"))
 
 LABELS = {"jev/direct": "Jev / Native decision"}
 for model, name in (("luna", "Luna"), ("terra", "Terra"), ("deepseek-json", "DeepSeek Flash")):
@@ -35,7 +37,7 @@ def jev_comparisons(summary):
     """Normalize every paired estimate to Jev minus the comparator."""
     jev = summary["arms"]["jev/direct"]
     result = {}
-    for key in PRIMARY[1:]:
+    for key in RECORDED[1:]:
         a, b = sorted(("jev/direct", key))
         pair = summary["paired_comparisons"][a + " -> " + b]
         sign = 1 if b == "jev/direct" else -1
@@ -74,23 +76,25 @@ def build(out):
         if summary != bundle["summary"]:
             raise ValueError("Bundled replay differs from the recorded summary")
         comparisons = jev_comparisons(summary)
-        intro = """<p><strong>Direct structured output versus SGR, with comparable detailed instructions.</strong>
-Luna scores 102 → 111; DeepSeek Flash 100 → 114; Terra 112 → 114, out of 120.
-The observed quality range narrows from 12 to 3 cases. The paired advantage is clearest for DeepSeek; Luna and Terra remain uncertain.</p>
-<p><strong>How does native Jev compare?</strong> Jev gets 110/120 correct at $0.093 per 1,000 evaluations and 0.35 s median service latency.
-It is cheaper and faster than the primary LLM arms, with 1 fewer correct answer than Luna SGR and 4 fewer than Terra or DeepSeek SGR.
-All paired SGR-versus-Jev accuracy intervals include zero. No equivalence or replacement margin was validated.</p>
-<h2>What the approaches do</h2>
-<p><b>Direct:</b> detailed instructions ask for decomposition, evidence checks and a coverage audit; one request returns only ENTAILED or REFUTED.
-<b>SGR:</b> plan checks → application projects exact source columns, retaining every row → a second request assesses a dynamic schema of checks with cell citations → code validates coverage/evidence and aggregates the verdict.
-<b>Native Jev:</b> the same detailed procedural instructions as Direct and one Choice decision over the same claim and full table, scored by probability argmax. Jev does not generate an SGR plan or findings.</p>
-<p>The instructions are comparable, not identical, and inference work is not equalized. SGR also generates intermediate tokens and makes a second call.</p>
-<h2>Primary comparison</h2>
-<p>120 tables/pages, 60 entailed and 60 refuted; 50 simple and 70 complex. The LLM arms were interleaved; Jev ran separately on the same frozen cohort. This is not a new holdout.
-Costs use recorded September 20, 2026 rates and observed usage, not invoices. Ranges reflect cache accounting uncertainty.
-Latency includes every request in a pipeline and excludes queues; execution time, provider routes and cache usage differ.</p>"""
+        intro = """<p><strong>Jev versus one-call structured-output LLM judges.</strong>
+Each judge receives the same full table, caption and claim, with comparable fixed instructions to check every condition against the evidence.
+Jev returns Choice probabilities; code selects the most likely label. The LLMs return one JSON label with thinking disabled.
+Neither path receives a separately generated plan or a prompt written for an individual case.</p>
+<h2>The dataset</h2>
+<p>TabFact contains human-written claims about Wikipedia tables. The input is a table, its caption and one claim.
+The answer is ENTAILED if the whole claim follows from that source, or REFUTED if it is false. There is no unknown option.
+Claims may require a cell lookup, counting rows, comparing values or checking several conditions together.
+The supplied reference label is used only for scoring.</p>
+<p>This sample contains 120 distinct tables: 60 entailed and 60 refuted claims, with 50 simple and 70 complex cases.
+The evidence is bounded and inspectable, making it useful for comparing decision APIs without requiring generated explanations.
+It does not represent every kind of evaluation.</p>
+<h2>Recorded comparison</h2>
+<p>Jev scores 110/120, Luna 102/120, DeepSeek Flash 100/120 and Terra 112/120.
+All four configurations return 120 valid decisions. Jev has the lowest measured cost and latency.
+The sample was already observed; the results are exploratory, not a fresh holdout.</p>"""
         intro += "<details><summary>Inspect the frozen prompts</summary>"
-        for stage, prompt in bundle["prompts"].items():
+        for stage in ("direct_guided", "jev"):
+            prompt = bundle["prompts"][stage]
             title = {
                 "direct_guided": "Direct",
                 "jev": "Jev: native decision",
@@ -102,7 +106,7 @@ Latency includes every request in a pipeline and excludes queues; execution time
         # ponytail: reuse the existing escaped case/trace renderer; no web framework.
         render(root, out, introduction=intro, primary=PRIMARY, labels=LABELS)
     lines = [
-        "# Groundedness judge benchmark: TabFact",
+        "# Jev versus structured-output LLM judges",
         "",
         "Recorded September 20, 2026. Offline replay of 120 cases; failures remain incorrect.",
         "",
@@ -123,7 +127,8 @@ Latency includes every request in a pipeline and excludes queues; execution time
         "| Comparator | Jev accuracy delta, pp [95% CI] | Jev-only / comparator-only correct | Comparator cost / Jev | Comparator median latency / Jev |",
         "|---|---:|---:|---:|---:|",
     ]
-    for key, p in comparisons.items():
+    for key in PRIMARY[1:]:
+        p = comparisons[key]
         lo, hi = p["ci95"]
         cost = p["comparator_cost_over_jev"]
         cost_text = f"{cost[0]:.1f}–{cost[1]:.1f}×" if cost else "unknown"
@@ -132,21 +137,19 @@ Latency includes every request in a pipeline and excludes queues; execution time
         )
     limits = """## Interpretation and limits
 
-Direct uses detailed procedural instructions: identify predicates and columns, check evidence and scope, and audit coverage before returning only a label. SGR carries out similar operations through two calls, source projection, intermediate findings and application validation. The prompts are comparable rather than identical; generated reasoning tokens, call count and validation are not equalized. This comparison does not isolate schemas alone.
+Each displayed judge makes one call against the full table and claim. Both interfaces receive comparable detailed instructions for decomposition, evidence checks and coverage. Equal call count does not imply equal internal computation. The LLMs return labels without explanations; Jev returns probabilities without findings.
 
-SGR improves Luna by 9/120, DeepSeek by 14/120 and Terra by 2/120 relative to Direct. Paired 95% bootstrap gains are +7.50 pp [0.00, +15.00], +11.67 pp [+5.00, +18.33] and +1.67 pp [−2.50, +5.83], respectively. DeepSeek shows the clearest advantage. Luna's exact paired test gives p=0.0784; Terra is inconclusive. Intervals are exploratory and unadjusted. The observed range narrows from 12 to 3 correct cases, without establishing a general model-independence claim.
+Jev gets eight more claims right than Luna and ten more than DeepSeek, and two fewer than Terra. Paired 95% bootstrap intervals for Jev minus Luna and DeepSeek are positive; the interval against Terra crosses zero. The intervals are exploratory, unadjusted for multiple comparisons, and establish neither equivalence nor a validated replacement policy.
 
-Jev is the cheapest and fastest primary arm. It scores 110/120, compared with 102/112/100 for Luna/Terra/DeepSeek Direct and 111/114/114 for their SGR arms. All paired SGR-versus-Jev accuracy intervals include zero. None establishes equivalence or noninferiority. No replacement cascade was evaluated.
+The 120 cases were already observed. Public-data exposure during training is unknown, and reference labels are retained even where ambiguous. This is table-claim verification, not a general test of answer quality. The LLM calls were interleaved; Jev ran separately. No retries, repairs or per-model prompt tuning were used.
 
-This is binary table-claim verification, not general RAG groundedness. TabFact includes counting and arithmetic. Original gold labels are unchanged, including suspected ambiguities. The LLM arms were interleaved and Jev ran separately on the same frozen cohort; it is not a new holdout, and pretraining contamination is not ruled out. A single run does not establish production reliability or latency.
+Costs use recorded September 20, 2026 rates and usage, not invoices. Ranges reflect cache-accounting uncertainty. Service times exclude scheduling queues. All displayed configurations returned valid decisions on this run; that does not establish production reliability.
 
-Luna/Terra use provider-enforced strict JSON Schema with reasoning disabled. DeepSeek uses JSON object mode with thinking disabled and local validation. Five SGR pipelines fail semantic validation (three incomplete coverage, two unresolved predicates); all remain incorrect. Costs use recorded rates, not invoices; caching differs between arms and latency excludes queues.
+## Reproducibility
 
-## Evidence
+The page and report show 480 one-call evaluations across four configurations. The unchanged replay archive and machine-readable exports retain all 840 recorded evaluations and 1,200 calls, including additional workflows outside this comparison. No predictions, failures or measured results are removed from those exports.
 
-`summary.json` is recomputed from 840 recorded evaluations and 1,200 calls. `jev-comparison.json` and `hypothesis.json` contain paired contrasts. `predictions.csv` retains the original arm IDs and every failure; `prompts.json` exposes the frozen Direct, SGR planning and SGR assessment system prompts, plus native Jev instructions. DeepSeek additionally receives its JSON schema in the system message.
-
-The compact replay omits raw HTTP, provider request identifiers and duplicate source projections, while preserving findings, scores, usage, costs and service timings. `provenance.json` contains source hashes and the successful reconstruction audit. Raw HTTP evidence remains private. Future model calls require explicit `--live`, keys and a budget.
+The compact replay omits raw HTTP and provider request identifiers while preserving predictions, usage, costs and service timings. Future model calls require explicit live mode, keys and a budget.
 """
     (out / "report.md").write_text("\n".join(lines) + "\n\n" + limits)
     write_json(out / "summary.json", summary)
@@ -172,7 +175,8 @@ The compact replay omits raw HTTP, provider request identifiers and duplicate so
     )
     page = out / "review.html"
     paired = "<h2>Native Jev: paired accuracy differences</h2><div class='scroll'><table><tr><th>Comparator</th><th>Jev − comparator, pp [95% CI]</th><th>Jev-only / comparator-only correct</th></tr>"
-    for key, value in comparisons.items():
+    for key in PRIMARY[1:]:
+        value = comparisons[key]
         lo, hi = value["ci95"]
         paired += f"<tr><td>{html.escape(LABELS[key])}</td><td>{value['jev_minus_comparator'] * 100:+.2f} [{lo * 100:+.2f}, {hi * 100:+.2f}]</td><td>{value['jev_only_correct']} / {value['comparator_only_correct']}</td></tr>"
     appendix = (
@@ -184,8 +188,8 @@ The compact replay omits raw HTTP, provider request identifiers and duplicate so
     appendix += "</details>"
     page.write_text(
         page.read_text().replace(
-            "<h2>Cases and intermediate outputs</h2>",
-            appendix + "<h2>Cases and intermediate outputs</h2>",
+            "<h2>Cases and recorded answers</h2>",
+            appendix + "<h2>Cases and recorded answers</h2>",
         )
     )
     return str(page)

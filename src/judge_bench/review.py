@@ -13,7 +13,11 @@ def render(root, out, *, introduction="", primary=None, labels=None):
     cases = json.loads((root / "cases.json").read_text())
     rows = read_jsonl(root / "records.jsonl")
     summary = json.loads((root / "summary.json").read_text())
-    note = summary["note"]
+    note = (
+        "One call per judge; the source and answer meanings are shared."
+        if primary
+        else summary["note"]
+    )
     esc = html.escape
     labels = labels or {}
 
@@ -25,12 +29,12 @@ def render(root, out, *, introduction="", primary=None, labels=None):
 
     parts = [
         """<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Groundedness judge benchmark — TabFact</title><style>
+<title>Jev versus LLM judges — TabFact</title><style>
 body{font:16px/1.5 system-ui;margin:32px auto;max-width:1180px;padding:0 20px;color:#19232e;background:#f8fafc}
 h1{font-size:30px}table{border-collapse:collapse;width:100%;background:white}td,th{padding:8px;border:1px solid #cbd5e1;text-align:left}
 th{background:#e2e8f0}details{margin:14px 0;padding:12px;border:1px solid #cbd5e1;background:white;border-radius:8px}
 summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;background:#f1f5f9;padding:12px}.ok{color:#11663b}.bad{color:#a32326}.scroll{overflow:auto}a{color:#155fa0}
-</style><h1>Groundedness judge benchmark</h1><p>TabFact · recorded September 20, 2026 · all failures count as errors · frozen SGR v2.</p>""",
+</style><h1>Jev versus structured-output LLM judges</h1><p>TabFact · recorded September 20, 2026 · all failures count as errors.</p>""",
         introduction,
         "<p>"
         + esc(note)
@@ -41,14 +45,22 @@ summary{cursor:pointer;font-weight:600}pre{white-space:pre-wrap;overflow-wrap:an
             f"<tr><td>{label(key)}</td><td>{s['correct']}/{s['n']}</td><td>{s['valid']}/{s['n']}</td><td>${s['known_cost_lower_usd'] * 1000 / s['n']:.3f}–{s['known_cost_upper_usd'] * 1000 / s['n']:.3f}</td><td>{s['unknown_cost_calls']}</td><td>{s['median_service_latency_s']:.2f} s</td></tr>"
         )
     parts.append(
-        "</table><h2>Cases and intermediate outputs</h2><p>Open any case to inspect its full source and each recorded plan/assessment. All cases are retained; order matches the frozen dataset.</p>"
+        "</table><h2>Cases and recorded answers</h2><p>Open any case to inspect its full source and the displayed judges’ recorded responses. All cases are retained; order matches the frozen dataset.</p>"
     )
     parts.append(
         '<label for="search">Search claims or case IDs</label> <input id="search" type="search"> <span id="count" aria-live="polite"></span>'
     )
     for i, c in enumerate(cases, 1):
         records = sorted(
-            (r for r in rows if r["id"] == c["id"]), key=lambda r: (r["model"], r["arm"])
+            (
+                r
+                for r in rows
+                if r["id"] == c["id"]
+                and (primary is None or r["model"] + "/" + r["arm"] in primary)
+            ),
+            key=lambda r: (
+                primary.index(r["model"] + "/" + r["arm"]) if primary else (r["model"], r["arm"])
+            ),
         )
         parts.append(
             f'<details class="case" data-search="{esc(c["id"] + " " + c["input"]["claim"])}"><summary>{i}. {esc(c["input"]["claim"])} · gold {c["gold"]}</summary><p>{esc(c["id"])} · {esc(c["channel"])}</p><p>{esc(c["input"]["caption"])}</p><div class="scroll"><table><tr>'
